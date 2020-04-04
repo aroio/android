@@ -1,4 +1,4 @@
-package de.abacuselectronics.aroiorc.ui.main
+package de.abacuselectronics.aroiorc.viewmodel.main
 
 import androidx.lifecycle.ViewModel
 

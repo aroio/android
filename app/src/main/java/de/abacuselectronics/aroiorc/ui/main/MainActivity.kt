@@ -1,8 +1,8 @@
-package de.abacuselectronics.aroiorc
+package de.abacuselectronics.aroiorc.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import de.abacuselectronics.aroiorc.ui.main.MainFragment
+import de.abacuselectronics.aroiorc.R
 
 class MainActivity : AppCompatActivity() {
 
