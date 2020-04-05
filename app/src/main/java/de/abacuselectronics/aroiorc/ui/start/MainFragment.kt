@@ -1,4 +1,4 @@
-package de.abacuselectronics.aroiorc.ui.main
+package de.abacuselectronics.aroiorc.ui.start
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,10 +8,6 @@ import androidx.fragment.app.Fragment
 import de.abacuselectronics.aroiorc.R
 
 class MainFragment : Fragment() {
-
-  companion object {
-    fun newInstance() = MainFragment()
-  }
 
   override fun onCreateView(
     inflater: LayoutInflater, container: ViewGroup?,
