@@ -1,11 +1,71 @@
 <resources>
 
   <!-- Base application theme. -->
-  <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+  <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
     <!-- Customize your theme here. -->
     <item name="colorPrimary">@color/colorPrimary</item>
     <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     <item name="colorAccent">@color/colorAccent</item>
   </style>
+
+
+  <!-- Text Styles -->
+  <style name="TextAppearance.Aroio.Headline1" parent="TextAppearance.MaterialComponents.Headline1">
+    <item name="color">@color/black_500</item>
+  </style>
+
+  <style name="TextAppearance.Aroio.Headline2" parent="TextAppearance.MaterialComponents.Headline2">
+    <item name="color">@color/black_500</item>
+  </style>
+
+  <style name="TextAppearance.Aroio.Headline3" parent="TextAppearance.MaterialComponents.Headline3">
+    <item name="color">@color/black_500</item>
+  </style>
+
+  <style name="TextAppearance.Aroio.Headline4" parent="TextAppearance.MaterialComponents.Headline4">
+    <item name="color">@color/black_500</item>
+  </style>
+
+  <style name="TextAppearance.Aroio.Headline5" parent="TextAppearance.MaterialComponents.Headline5">
+    <item name="color">@color/black_500</item>
+  </style>
+
+  <style name="TextAppearance.Aroio.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
+    <item name="color">@color/black_500</item>
+  </style>
+
+  <style name="TextAppearance.Aroio.Body1" parent="TextAppearance.MaterialComponents.Body1">
+    <item name="color">@color/black_500</item>
+  </style>
+
+  <style name="TextAppearance.Aroio.Body2" parent="TextAppearance.MaterialComponents.Body2">
+    <item name="color">@color/black_500</item>
+  </style>
+
+  <style name="TextAppearance.Aroio.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+    <item name="color">@color/black_500</item>
+  </style>
+
+  <style name="TextAppearance.Aroio.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2">
+    <item name="color">@color/black_500</item>
+  </style>
+
+  <style name="TextAppearance.Aroio.Button" parent="TextAppearance.MaterialComponents.Button">
+    <item name="color">@color/black_500</item>
+  </style>
+
+  <style name="TextAppearance.Aroio.Caption" parent="TextAppearance.MaterialComponents.Caption">
+    <item name="color">@color/black_500</item>
+  </style>
+
+  <style name="TextAppearance.Aroio.Overline" parent="TextAppearance.MaterialComponents.Overline">
+    <item name="color">@color/black_500</item>
+  </style>
+
+  <!-- View Styles -->
+  <style name="CardView.">
+    <item name="android:radius">4dp</item>
+  </style>
+
 
 </resources>

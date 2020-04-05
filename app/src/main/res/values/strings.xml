@@ -1,3 +1,6 @@
 <resources>
   <string name="app_name">AroioRC</string>
+  <string name="information">Information</string>
+  <string name="information_body">Hier werden alle Geräte aufgelistet, die mit dem AroioOS laufen.</string>
+  <string name="accessible_devices">Erreichbare Aroios</string>
 </resources>
