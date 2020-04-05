@@ -3,4 +3,8 @@
   <string name="information">Information</string>
   <string name="information_body">Hier werden alle Geräte aufgelistet, die mit dem AroioOS laufen.</string>
   <string name="accessible_devices">Erreichbare Aroios</string>
+  <string name="login">Anmelden</string>
+  <string name="login_body">Bitte melden Sie sich mit dem Benutzernamen und Passwort an.</string>
+  <string name="username">Benutzername</string>
+  <string name="password">Passwort</string>
 </resources>
