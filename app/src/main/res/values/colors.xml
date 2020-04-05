@@ -11,6 +11,7 @@
   <!-- Aroio Color Scheme  -->
 
   <color name="white">#FFFFFF</color>
+  <color name="transparent">#00000000</color>
 
   <color name="primary_900">#003551</color>
   <color name="primary_800">#004862</color>
