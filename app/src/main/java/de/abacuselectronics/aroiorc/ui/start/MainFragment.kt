@@ -1,4 +1,4 @@
-package de.abacuselectronics.aroiorc.ui.main
+package de.abacuselectronics.aroiorc.ui.start
 
 import android.os.Bundle
 import android.view.LayoutInflater
