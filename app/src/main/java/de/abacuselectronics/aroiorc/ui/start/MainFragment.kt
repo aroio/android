@@ -9,10 +9,6 @@ import de.abacuselectronics.aroiorc.R
 
 class MainFragment : Fragment() {
 
-  companion object {
-    fun newInstance() = MainFragment()
-  }
-
   override fun onCreateView(
     inflater: LayoutInflater, container: ViewGroup?,
     savedInstanceState: Bundle?
