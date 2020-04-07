@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity(), LoginFragment.Listener {
 
     if (savedInstanceState == null) {
       supportFragmentManager.beginTransaction()
-        .replace(R.id.container, LoginFragment.newInstance())
+        .replace(R.id.container, AroioListFragment.newInstance())
         .commitNow()
     }
   }
