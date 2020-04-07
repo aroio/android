@@ -6,6 +6,7 @@ import de.abacuselectronics.aroiorc.R
 import de.abacuselectronics.aroiorc.ui.recycler.RecyclerFragment
 import de.abacuselectronics.aroiorc.ui.recycler.RecyclerItemAdapter
 import de.abacuselectronics.aroiorc.ui.recycler.items.Margin
+import de.abacuselectronics.aroiorc.ui.recycler.items.OverlineItem
 import de.abacuselectronics.aroiorc.ui.recycler.items.TitleBodyCardItem
 
 class AroioListFragment : RecyclerFragment() {
@@ -20,7 +21,13 @@ class AroioListFragment : RecyclerFragment() {
       body = R.string.information_body,
       margin = Margin(16, 24, 16, 0)
     )
-    adapter.items = listOf(titleBodyCardItem)
+
+    val overline = OverlineItem(
+      text = R.string.accessible_devices,
+      margin = Margin(start = 0, top = 32, end = 0, bottom = 0)
+    )
+
+    adapter.items = listOf(titleBodyCardItem, overline)
 
   }
 
