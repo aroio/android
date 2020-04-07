@@ -27,6 +27,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     passwordTextView = view.findViewById(R.id.password_edit_text)
     loginButton = view.findViewById(R.id.login_button)
     loginButton.setOnClickListener { login() }
+
+    requireActivity().title = requireArguments().getString(KEY_AROIO_IP_ADDRESS)
   }
 
   private fun login() {
@@ -48,6 +50,15 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
   }
 
   companion object {
-    fun newInstance() = LoginFragment()
+    private const val KEY_AROIO_IP_ADDRESS =
+      "de.abacuselectronics.aroiorc.ui.start.aroio_name"
+
+    fun newInstance(aroioName: String): LoginFragment {
+      val fragment = LoginFragment()
+      fragment.arguments = Bundle().apply {
+        putString(KEY_AROIO_IP_ADDRESS, aroioName)
+      }
+      return fragment
+    }
   }
 }
