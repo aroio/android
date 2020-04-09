@@ -2,7 +2,6 @@ package de.abacuselectronics.aroiorc.ui.start
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import de.abacuselectronics.aroiorc.R
 import de.abacuselectronics.aroiorc.ui.recycler.RecyclerFragment
 import de.abacuselectronics.aroiorc.ui.recycler.RecyclerItemAdapter
@@ -12,6 +11,12 @@ import de.abacuselectronics.aroiorc.ui.recycler.items.OverlineItem
 import de.abacuselectronics.aroiorc.ui.recycler.items.TitleBodyCardItem
 
 class AroioListFragment : RecyclerFragment() {
+
+  interface Listener {
+    fun onListAroioClicked(aroioIpAddress: String)
+  }
+
+  var listener: Listener? = null
 
   override val adapter = RecyclerItemAdapter()
 
@@ -32,10 +37,7 @@ class AroioListFragment : RecyclerFragment() {
     val aroio = AroioListItem(
       ipAddress = "192.168.1.53",
       name = "Hermanns",
-      onClick = {
-        Toast.makeText(requireContext(), "Clicked $it", Toast.LENGTH_SHORT)
-          .show()
-      }
+      onClick = { listener?.onListAroioClicked("192.168.1.53") }
     )
 
     adapter.items = listOf(titleBodyCardItem, overline, aroio, aroio)

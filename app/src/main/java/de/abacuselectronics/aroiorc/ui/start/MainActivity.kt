@@ -1,12 +1,22 @@
 package de.abacuselectronics.aroiorc.ui.start
 
 import android.os.Bundle
-import android.widget.Toast
+import android.util.Log
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.observe
 import de.abacuselectronics.aroiorc.R
+import de.abacuselectronics.aroiorc.aroioktx.setDefaultAnimations
+import de.abacuselectronics.aroiorc.viewmodel.start.StartViewModel
+import kotlinx.coroutines.launch
 
-class MainActivity : AppCompatActivity(), LoginFragment.Listener {
+class MainActivity : AppCompatActivity(),
+  LoginFragment.Listener,
+  AroioListFragment.Listener {
+
+  private val viewModel: StartViewModel by viewModels()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -17,17 +27,55 @@ class MainActivity : AppCompatActivity(), LoginFragment.Listener {
         .replace(R.id.container, AroioListFragment.newInstance())
         .commitNow()
     }
+
+    viewModel.state.observe(this, { state ->
+      when (state) {
+        StartViewModel.State.LOADING -> showProgress()
+        StartViewModel.State.SUCCESS -> startDetailActivity()
+        StartViewModel.State.FAIL    -> displayFailure()
+      }
+    })
   }
 
   override fun onAttachFragment(fragment: Fragment) {
     super.onAttachFragment(fragment)
 
     when (fragment) {
-      is LoginFragment -> fragment.listener = this
+      is AroioListFragment -> fragment.listener = this
+      is LoginFragment     -> fragment.listener = this
     }
   }
 
-  override fun onLogin(username: String, password: String) {
-    Toast.makeText(this, "$username and $password", Toast.LENGTH_SHORT).show()
+  override fun onCancel() {
+    supportFragmentManager.popBackStack()
   }
+
+  override fun onLogin(username: String, password: String) {
+    lifecycleScope.launch { viewModel.login(username, password) }
+  }
+
+  override fun onListAroioClicked(aroioIpAddress: String) {
+    viewModel.ipAddress = aroioIpAddress
+    supportFragmentManager.beginTransaction()
+      .setDefaultAnimations()
+      .replace(R.id.container, LoginFragment.newInstance(aroioIpAddress))
+      .addToBackStack(null)
+      .commit()
+  }
+
+  private fun startDetailActivity() {
+    // TODO - start DetailActivity
+    Log.i(javaClass.simpleName, "Starting the DetailActivity")
+  }
+
+  private fun showProgress() {
+    // TODO - show progress
+    Log.i(javaClass.simpleName, "Show the progressbar")
+  }
+
+  private fun displayFailure() {
+    // TODO - display Failure
+    Log.i(javaClass.simpleName, "Display the failure cause")
+  }
+
 }

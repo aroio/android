@@ -12,11 +12,11 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
   interface Listener {
     fun onLogin(username: String, password: String)
+    fun onCancel()
   }
 
   private lateinit var usernameTextView: TextInputEditText
   private lateinit var passwordTextView: TextInputEditText
-  private lateinit var loginButton: MaterialButton
 
   var listener: Listener? = null
 
@@ -25,8 +25,11 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     usernameTextView = view.findViewById(R.id.username_edit_text)
     passwordTextView = view.findViewById(R.id.password_edit_text)
-    loginButton = view.findViewById(R.id.login_button)
-    loginButton.setOnClickListener { login() }
+    view.findViewById<MaterialButton>(R.id.login_button)
+      .setOnClickListener { login() }
+    view.findViewById<MaterialButton>(R.id.cancel_button)
+      .setOnClickListener { listener?.onCancel() }
+    requireActivity().title = requireArguments().getString(KEY_AROIO_IP_ADDRESS)
   }
 
   private fun login() {
@@ -48,6 +51,15 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
   }
 
   companion object {
-    fun newInstance() = LoginFragment()
+    private const val KEY_AROIO_IP_ADDRESS =
+      "de.abacuselectronics.aroiorc.ui.start.aroio_name"
+
+    fun newInstance(aroioName: String): LoginFragment {
+      val fragment = LoginFragment()
+      fragment.arguments = Bundle().apply {
+        putString(KEY_AROIO_IP_ADDRESS, aroioName)
+      }
+      return fragment
+    }
   }
 }
