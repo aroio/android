@@ -15,4 +15,6 @@
 
 
   <string name="detail_config_overline_network">Netzwerk</string>
+  <string name="detail_config_wlan">WLAN</string>
+  <string name="detail_config_automatic_config">Automatische Konfiguration</string>
 </resources>

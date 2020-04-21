@@ -21,13 +21,11 @@ class TextSwitchItem(
       is TextType.Res -> holder.text.setText(textType.id)
       is TextType.Raw -> holder.text.text = textType.value
     }
-    holder.switch.isEnabled = toggleState
+    holder.switch.isChecked = toggleState
   }
 
-  override fun createViewHolder(itemView: View): RecyclerView.ViewHolder {
-    TODO("not implemented")
-  }
-
+  override fun createViewHolder(itemView: View): RecyclerView.ViewHolder =
+    Holder(itemView)
 
   class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val text: AppCompatTextView =
