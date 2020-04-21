@@ -9,6 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.observe
 import de.abacuselectronics.aroiorc.R
 import de.abacuselectronics.aroiorc.aroioktx.setDefaultAnimations
+import de.abacuselectronics.aroiorc.ui.detail.DetailActivity
 import de.abacuselectronics.aroiorc.viewmodel.start.StartViewModel
 import kotlinx.coroutines.launch
 
@@ -64,8 +65,7 @@ class MainActivity : AppCompatActivity(),
   }
 
   private fun startDetailActivity() {
-    // TODO - start DetailActivity
-    Log.i(javaClass.simpleName, "Starting the DetailActivity")
+    startActivity(DetailActivity.createIntent(this))
   }
 
   private fun showProgress() {
