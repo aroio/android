@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <item
+    android:id="@+id/menu_detail_nav_config"
+    android:icon="@drawable/ic_settings_24dp"
+    android:title="Konfiguration" />
+  <item
+    android:id="@+id/menu_detail_nav_system"
+    android:icon="@drawable/ic_build_24dp"
+    android:title="System" />
+  <item
+    android:id="@+id/menu_detail_nav_convolver"
+    android:icon="@drawable/ic_hearing_24dp"
+    android:title="Convolver" />
+  <item
+    android:id="@+id/menu_detail_nav_audio"
+    android:icon="@drawable/ic_graphic_eq_24dp"
+    android:title="Audio" />
+</menu>
