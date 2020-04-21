@@ -11,4 +11,8 @@
   <string name="username">Benutzername</string>
   <string name="password">Passwort</string>
   <string name="cancel">Abbrechen</string>
+
+
+
+  <string name="detail_config_overline_network">Netzwerk</string>
 </resources>

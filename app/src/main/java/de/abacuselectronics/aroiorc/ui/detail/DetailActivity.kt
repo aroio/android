@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import de.abacuselectronics.aroiorc.R
+import de.abacuselectronics.aroiorc.ui.detail.config.ConfigFragment
 import de.abacuselectronics.aroiorc.ui.start.AroioListFragment
 
 class DetailActivity : AppCompatActivity(),
@@ -23,7 +24,10 @@ class DetailActivity : AppCompatActivity(),
     viewPager = findViewById(R.id.detail_viewPager)
     viewPager.adapter = DetailFragmentPagerAdapter(
       activity = this,
-      fragments = listOf(AroioListFragment.newInstance())
+      fragments = listOf(
+        ConfigFragment.newInstance(),
+        AroioListFragment.newInstance()
+      )
     )
 
     bottomNav = findViewById(R.id.detail_bottom_navigation)
