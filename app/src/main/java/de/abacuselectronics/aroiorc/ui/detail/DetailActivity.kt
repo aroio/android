@@ -22,6 +22,7 @@ class DetailActivity : AppCompatActivity(),
     setContentView(R.layout.activity_detail)
 
     viewPager = findViewById(R.id.detail_viewPager)
+    viewPager.isUserInputEnabled = false
     viewPager.adapter = DetailFragmentPagerAdapter(
       activity = this,
       fragments = listOf(
