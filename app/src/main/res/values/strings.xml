@@ -11,4 +11,20 @@
   <string name="username">Benutzername</string>
   <string name="password">Passwort</string>
   <string name="cancel">Abbrechen</string>
+
+
+
+  <string name="detail_config_overline_network">Netzwerk</string>
+  <string name="detail_config_wlan">WLAN</string>
+  <string name="detail_config_automatic_config">Automatische Konfiguration</string>
+  <string name="detail_config_hostname">Hostname</string>
+  <string name="detail_config_ip_address">IP-Adresse</string>
+  <string name="detail_config_subnet">Subnetzmaske</string>
+  <string name="detail_config_gateway">Gateway</string>
+  <string name="detail_config_overline_webinterface">Webinterface</string>
+  <string name="detail_config_overline_hardware_platform">Hardware Platform</string>
+  <string name="detail_config_radio_aroiosu">AroioSU</string>
+  <string name="detail_config_radio_aroioos">AroioOS</string>
+  <string name="detail_config_radio_aroioex">AroioEX</string>
+  <string name="detail_config_radio_aroiolt">AroioLT</string>
 </resources>

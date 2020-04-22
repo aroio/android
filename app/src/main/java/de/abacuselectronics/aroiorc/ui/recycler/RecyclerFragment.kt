@@ -19,7 +19,8 @@ abstract class RecyclerFragment : Fragment(R.layout.fragment_recycler) {
   /**
    * [RecyclerView.Adapter] to use for the RecyclerView.
    * */
-  abstract val adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>
+  protected open var adapter: RecyclerView.Adapter<RecyclerView.ViewHolder> =
+    RecyclerItemAdapter()
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
@@ -29,4 +30,14 @@ abstract class RecyclerFragment : Fragment(R.layout.fragment_recycler) {
       ?: LinearLayoutManager(view.context)
     recyclerView.adapter = adapter
   }
+
+  /**
+   * Sets a list of RecyclerItems as items if the adapter is of type
+   * RecyclerItemAdapter.
+   * @param items - `RecyclerItem`s to be set
+   * */
+  protected fun setItems(items: List<RecyclerItem>) {
+    (adapter as RecyclerItemAdapter).items = items
+  }
+
 }

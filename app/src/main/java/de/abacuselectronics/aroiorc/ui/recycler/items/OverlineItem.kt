@@ -3,7 +3,6 @@ package de.abacuselectronics.aroiorc.ui.recycler.items
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import androidx.annotation.StringRes
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import de.abacuselectronics.aroiorc.R
@@ -11,7 +10,7 @@ import de.abacuselectronics.aroiorc.aroioktx.updateMarginsRelative
 import de.abacuselectronics.aroiorc.ui.recycler.RecyclerItem
 
 class OverlineItem(
-  @StringRes private val text: Int,
+  private val textType: TextType,
   private val margin: Margin = Margin(0, 0, 0, 0)
 ) : RecyclerItem {
 
@@ -20,7 +19,11 @@ class OverlineItem(
 
   override fun bind(holder: RecyclerView.ViewHolder) {
     require(holder is Holder)
-    holder.overline.setText(text)
+    when (textType) {
+      is TextType.Res -> holder.overline.setText(textType.id)
+      is TextType.Raw -> holder.overline.text = textType.value
+    }
+
   }
 
   override fun createViewHolder(itemView: View): RecyclerView.ViewHolder {
