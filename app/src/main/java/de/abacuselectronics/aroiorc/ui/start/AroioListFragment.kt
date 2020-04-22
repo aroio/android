@@ -4,10 +4,7 @@ import android.os.Bundle
 import android.view.View
 import de.abacuselectronics.aroiorc.R
 import de.abacuselectronics.aroiorc.ui.recycler.RecyclerFragment
-import de.abacuselectronics.aroiorc.ui.recycler.items.AroioListItem
-import de.abacuselectronics.aroiorc.ui.recycler.items.Margin
-import de.abacuselectronics.aroiorc.ui.recycler.items.OverlineItem
-import de.abacuselectronics.aroiorc.ui.recycler.items.TitleBodyCardItem
+import de.abacuselectronics.aroiorc.ui.recycler.items.*
 
 class AroioListFragment : RecyclerFragment() {
 
@@ -27,7 +24,7 @@ class AroioListFragment : RecyclerFragment() {
     )
 
     val overline = OverlineItem(
-      text = R.string.accessible_devices,
+      textType = TextType.Res(R.string.accessible_devices),
       margin = Margin(0, 24, 0, 0)
     )
 
