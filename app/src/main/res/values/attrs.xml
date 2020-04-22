@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <declare-styleable name="SublabelView">
+    <attr name="subtitle" format="reference|string" />
+    <attr name="indent_type" format="enum">
+      <enum name="INDENT" value="0"/>
+      <enum name="FULL" value="1"/>
+      <enum name="NONE" value="2"/>
+    </attr>
+  </declare-styleable>
+
+</resources>

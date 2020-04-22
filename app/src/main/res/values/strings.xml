@@ -27,4 +27,13 @@
   <string name="detail_config_radio_aroioos">AroioOS</string>
   <string name="detail_config_radio_aroioex">AroioEX</string>
   <string name="detail_config_radio_aroiolt">AroioLT</string>
+  <string name="detail_system_overline_systeminformation">Systeminformationen</string>
+  <string name="detail_system_name">Name</string>
+  <string name="detail_system_running_since">Läuft seit</string>
+  <string name="detail_system_mac_address_cable">Mac-Adresse (kabelgebunden)</string>
+  <string name="detail_system_mac_address_wlan">Mac-Adresse (WLAN)</string>
+  <string name="detail_system_ip_address_wlan">IP-Adresse (WLAN)</string>
+  <string name="detail_system_ip_address_cable">IP-Adresse (kabelgebunden)</string>
+  <string name="detail_system_squeezeserver">Squeezeserver</string>
+  <string name="detail_system_overline_update">Update</string>
 </resources>
