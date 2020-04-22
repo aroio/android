@@ -2,32 +2,50 @@ package de.abacuselectronics.aroiorc.ui.detail.config
 
 import android.os.Bundle
 import android.view.View
+import android.widget.RadioButton
+import androidx.fragment.app.Fragment
+import com.google.android.material.switchmaterial.SwitchMaterial
+import com.google.android.material.textfield.TextInputEditText
 import de.abacuselectronics.aroiorc.R
-import de.abacuselectronics.aroiorc.ui.recycler.RecyclerFragment
-import de.abacuselectronics.aroiorc.ui.recycler.items.Margin
-import de.abacuselectronics.aroiorc.ui.recycler.items.OverlineItem
-import de.abacuselectronics.aroiorc.ui.recycler.items.TextSwitchItem
-import de.abacuselectronics.aroiorc.ui.recycler.items.TextType
 
-class ConfigFragment : RecyclerFragment() {
+class ConfigFragment : Fragment(R.layout.fragment_detail_config) {
+
+  private lateinit var wlanSwitch: SwitchMaterial
+  private lateinit var autoConfigSwitch: SwitchMaterial
+
+  private lateinit var hostnameEditText: TextInputEditText
+  private lateinit var ipEditText: TextInputEditText
+  private lateinit var subnetEditText: TextInputEditText
+  private lateinit var gatewayEditText: TextInputEditText
+
+  private lateinit var webinterfaceEditText: TextInputEditText
+
+  private lateinit var radioAroioSu: RadioButton
+  private lateinit var radioAroioOs: RadioButton
+  private lateinit var radioAroioEx: RadioButton
+  private lateinit var radioAroioLt: RadioButton
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
-    val networkOverline = OverlineItem(
-      textType = TextType.Res(R.string.detail_config_overline_network),
-      margin = Margin(start = 0, top = 24, end = 0, bottom = 0)
-    )
-    val wlanTextSwitch = TextSwitchItem(
-      textType = TextType.Res(R.string.detail_config_wlan),
-      toggleState = false
-    )
-    val automaticConfigTextSwitch = TextSwitchItem(
-      textType = TextType.Res(R.string.detail_config_automatic_config),
-      toggleState = true
-    )
+    // Switches
+    wlanSwitch = view.findViewById(R.id.switch_wlan)
+    autoConfigSwitch = view.findViewById(R.id.switch_auto_config)
 
-    setItems(listOf(networkOverline, wlanTextSwitch, automaticConfigTextSwitch))
+    // EditTexts
+    hostnameEditText = view.findViewById(R.id.detail_config_hostname_edit_text)
+    ipEditText = view.findViewById(R.id.detail_config_ip_edit_text)
+    subnetEditText = view.findViewById(R.id.detail_config_subnet_edit_text)
+    gatewayEditText = view.findViewById(R.id.detail_config_gateway_edit_text)
+
+    webinterfaceEditText =
+      view.findViewById(R.id.detail_config_webinterface_edit_text)
+
+    // Radio Buttons
+    radioAroioSu = view.findViewById(R.id.detail_config_platform_aroiosu)
+    radioAroioOs = view.findViewById(R.id.detail_config_platform_aroioos)
+    radioAroioEx = view.findViewById(R.id.detail_config_platform_aroioex)
+    radioAroioLt = view.findViewById(R.id.detail_config_platform_aroiolt)
   }
 
 
