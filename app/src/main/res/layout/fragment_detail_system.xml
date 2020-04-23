@@ -25,6 +25,7 @@
 
     <!-- Name -->
     <de.abacuselectronics.aroiorc.ui.custom.SublabelView
+      android:id="@+id/detail_system_name"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       app:indent_type="INDENT"
@@ -33,6 +34,7 @@
 
     <!-- Running since -->
     <de.abacuselectronics.aroiorc.ui.custom.SublabelView
+      android:id="@+id/detail_system_running_since"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       app:indent_type="INDENT"
@@ -41,6 +43,7 @@
 
     <!-- Mac Address cable -->
     <de.abacuselectronics.aroiorc.ui.custom.SublabelView
+      android:id="@+id/detail_system_mac_address_cable"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       app:indent_type="INDENT"
@@ -49,6 +52,7 @@
 
     <!-- Mac Address wlan -->
     <de.abacuselectronics.aroiorc.ui.custom.SublabelView
+      android:id="@+id/detail_system_mac_address_wlan"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       app:indent_type="INDENT"
@@ -57,6 +61,7 @@
 
     <!-- IP Address cable -->
     <de.abacuselectronics.aroiorc.ui.custom.SublabelView
+      android:id="@+id/detail_system_ip_address_cable"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       app:indent_type="INDENT"
@@ -65,6 +70,7 @@
 
     <!-- IP Address wlan -->
     <de.abacuselectronics.aroiorc.ui.custom.SublabelView
+      android:id="@+id/detail_system_ip_address_wlan"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       app:indent_type="INDENT"
@@ -73,6 +79,7 @@
 
     <!-- Squeezeserver -->
     <de.abacuselectronics.aroiorc.ui.custom.SublabelView
+      android:id="@+id/detail_system_squeeze"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       app:indent_type="INDENT"

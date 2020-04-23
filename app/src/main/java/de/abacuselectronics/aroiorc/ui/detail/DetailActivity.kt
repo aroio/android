@@ -9,6 +9,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import de.abacuselectronics.aroiorc.R
 import de.abacuselectronics.aroiorc.ui.detail.config.ConfigFragment
+import de.abacuselectronics.aroiorc.ui.detail.system.SystemFragment
 import de.abacuselectronics.aroiorc.ui.start.AroioListFragment
 
 class DetailActivity : AppCompatActivity(),
@@ -27,6 +28,7 @@ class DetailActivity : AppCompatActivity(),
       activity = this,
       fragments = listOf(
         ConfigFragment.newInstance(),
+        SystemFragment.newInstance(),
         AroioListFragment.newInstance()
       )
     )

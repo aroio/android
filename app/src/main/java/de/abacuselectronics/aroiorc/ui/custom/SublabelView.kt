@@ -16,7 +16,7 @@ enum class DividerType {
   NONE
 }
 
-class SublabelView(
+class SublabelView @JvmOverloads constructor(
   context: Context,
   attrs: AttributeSet? = null,
   defStyle: Int = 0
@@ -34,6 +34,8 @@ class SublabelView(
 
 
   init {
+    orientation = VERTICAL
+
     label = AppCompatTextView(context)
     label.textAppearance(R.style.TextAppearance_Aroio_Subtitle1)
     label.setTextColor(ContextCompat.getColor(context, R.color.black_400))
@@ -54,7 +56,7 @@ class SublabelView(
     context.withStyledAttributes(attrs, R.styleable.SublabelView) {
       subtitle.text = getText(R.styleable.SublabelView_subtitle)
       dividerType =
-        DividerType.values()[getInt(R.styleable.SublabelView_indent_type, 2)]
+        DividerType.values()[getInt(R.styleable.SublabelView_indent_type, 0)]
     }
 
     val divider = getDivider(dividerType)
@@ -82,7 +84,7 @@ class SublabelView(
       resources.getDimension(R.dimen.divider).toInt()
     ).apply { setMargins(margin, 0, 0, 0) }
 
-    view.setBackgroundColor(android.R.drawable.divider_horizontal_dim_dark)
+    view.background = ContextCompat.getDrawable(context, R.color.black_200)
 
     return view
   }
