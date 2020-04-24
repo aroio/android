@@ -2,6 +2,7 @@
 <resources>
 
   <declare-styleable name="SublabelView">
+    <attr name="label" format="string|reference" />
     <attr name="subtitle" format="reference|string" />
     <attr name="indent_type" format="enum">
       <enum name="INDENT" value="0"/>

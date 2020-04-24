@@ -38,7 +38,7 @@ class SublabelView @JvmOverloads constructor(
 
     label = AppCompatTextView(context)
     label.textAppearance(R.style.TextAppearance_Aroio_Subtitle1)
-    label.setTextColor(ContextCompat.getColor(context, R.color.black_400))
+    label.setTextColor(ContextCompat.getColor(context, R.color.black_500))
     label.layoutParams = MarginLayoutParams(
       MarginLayoutParams.MATCH_PARENT,
       MarginLayoutParams.WRAP_CONTENT
@@ -46,7 +46,7 @@ class SublabelView @JvmOverloads constructor(
 
     subtitle = AppCompatTextView(context)
     subtitle.textAppearance(R.style.TextAppearance_Aroio_Body2)
-    subtitle.setTextColor(ContextCompat.getColor(context, R.color.black_500))
+    subtitle.setTextColor(ContextCompat.getColor(context, R.color.black_400))
     subtitle.layoutParams = MarginLayoutParams(
       MarginLayoutParams.MATCH_PARENT,
       MarginLayoutParams.WRAP_CONTENT
@@ -54,16 +54,15 @@ class SublabelView @JvmOverloads constructor(
 
     var dividerType: DividerType = DividerType.NONE
     context.withStyledAttributes(attrs, R.styleable.SublabelView) {
+      label.text = getText(R.styleable.SublabelView_label)
       subtitle.text = getText(R.styleable.SublabelView_subtitle)
       dividerType =
         DividerType.values()[getInt(R.styleable.SublabelView_indent_type, 0)]
     }
 
-    val divider = getDivider(dividerType)
-
     addView(label)
     addView(subtitle)
-    addView(divider)
+    getDivider(dividerType)?.let { addView(it) }
   }
 
   fun setLabel(label: String) {
@@ -78,15 +77,13 @@ class SublabelView @JvmOverloads constructor(
   }
 
   private fun createDivider(margin: Int): View {
-    val view = View(context)
-    view.layoutParams = MarginLayoutParams(
+    val divider = View(context)
+    divider.layoutParams = MarginLayoutParams(
       MarginLayoutParams.MATCH_PARENT,
       resources.getDimension(R.dimen.divider).toInt()
     ).apply { setMargins(margin, 0, 0, 0) }
-
-    view.background = ContextCompat.getDrawable(context, R.color.black_200)
-
-    return view
+    divider.background = ContextCompat.getDrawable(context, R.color.black_200)
+    return divider
   }
 
 }
