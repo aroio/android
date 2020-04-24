@@ -101,7 +101,7 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       app:indent_type="indent"
-      app:label="@string/detail_system_beta_usage" />
+      app:label="@string/detail_system_beta_version_search" />
 
     <!-- Start update -->
     <com.google.android.material.button.MaterialButton
@@ -109,7 +109,7 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_margin="@dimen/default_space"
-      android:text="@string/detail_system_start_update" />
+      android:text="@string/detail_system_search_update" />
 
   </LinearLayout>
 

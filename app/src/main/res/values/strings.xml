@@ -36,6 +36,6 @@
   <string name="detail_system_ip_address_cable">IP-Adresse (kabelgebunden)</string>
   <string name="detail_system_squeezeserver">Squeezeserver</string>
   <string name="detail_system_overline_update">Update</string>
-  <string name="detail_system_start_update">Update starten</string>
-  <string name="detail_system_beta_usage">Nutzung der Beta-Version</string>
+  <string name="detail_system_search_update">Suche Update</string>
+  <string name="detail_system_beta_version_search">Nach Beta-Version suchen</string>
 </resources>

@@ -58,7 +58,11 @@ class SystemFragment : Fragment(R.layout.fragment_detail_system) {
   }
 
   private fun startUpdate() {
-    TODO("not implemented")
+    Toast.makeText(
+      requireContext(),
+      "Search for updates",
+      Toast.LENGTH_SHORT
+    ).show()
   }
 
   companion object {
