@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+  <attr name="label" format="string|reference" />
+  <attr name="indent_type" format="enum">
+    <enum name="indent" value="0"/>
+    <enum name="full" value="1"/>
+    <enum name="none" value="2"/>
+  </attr>
 
   <declare-styleable name="SublabelView">
-    <attr name="label" format="string|reference" />
+    <attr name="label"/>
     <attr name="subtitle" format="reference|string" />
-    <attr name="indent_type" format="enum">
-      <enum name="INDENT" value="0"/>
-      <enum name="FULL" value="1"/>
-      <enum name="NONE" value="2"/>
-    </attr>
+    <attr name="indent_type"/>
+  </declare-styleable>
+
+  <declare-styleable name="OneLineSwitchView">
+    <attr name="label"/>
+    <attr name="indent_type"/>
+    <attr name="android:checked"/>
   </declare-styleable>
 
 </resources>

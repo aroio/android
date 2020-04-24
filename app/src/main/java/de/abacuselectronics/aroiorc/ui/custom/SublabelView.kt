@@ -10,12 +10,6 @@ import androidx.core.content.withStyledAttributes
 import de.abacuselectronics.aroiorc.R
 import de.abacuselectronics.aroiorc.aroioktx.textAppearance
 
-enum class DividerType {
-  INDENT,
-  FULL,
-  NONE
-}
-
 class SublabelView @JvmOverloads constructor(
   context: Context,
   attrs: AttributeSet? = null,
