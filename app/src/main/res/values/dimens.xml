@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <dimen name="divider">1dp</dimen>
+  <dimen name="default_space_0_25">4dp</dimen>
+  <dimen name="default_space_0_5">8dp</dimen>
+  <dimen name="default_space_0_75">12dp</dimen>
+  <dimen name="default_space">16dp</dimen>
+  <dimen name="default_space_1_5">24dp</dimen>
+  <dimen name="default_space_2">32dp</dimen>
+
+</resources>

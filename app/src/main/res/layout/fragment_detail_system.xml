@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatTextView
+      style="@style/TextAppearance.Aroio.Overline"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:paddingStart="16dp"
+      android:paddingTop="24dp"
+      android:paddingEnd="16dp"
+      android:text="@string/detail_system_overline_systeminformation" />
+
+    <View
+      android:layout_width="match_parent"
+      android:layout_height="1dp"
+      android:background="@color/black_200" />
+
+    <!-- Name -->
+    <de.abacuselectronics.aroiorc.ui.custom.SublabelView
+      android:id="@+id/detail_system_name"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      app:indent_type="indent"
+      app:label="Aroio 123"
+      app:subtitle="@string/detail_system_name" />
+
+    <!-- Running since -->
+    <de.abacuselectronics.aroiorc.ui.custom.SublabelView
+      android:id="@+id/detail_system_running_since"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      app:indent_type="indent"
+      app:subtitle="@string/detail_system_running_since" />
+
+    <!-- Mac Address cable -->
+    <de.abacuselectronics.aroiorc.ui.custom.SublabelView
+      android:id="@+id/detail_system_mac_address_cable"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      app:indent_type="indent"
+      app:subtitle="@string/detail_system_mac_address_cable" />
+
+    <!-- Mac Address wlan -->
+    <de.abacuselectronics.aroiorc.ui.custom.SublabelView
+      android:id="@+id/detail_system_mac_address_wlan"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      app:indent_type="indent"
+      app:subtitle="@string/detail_system_mac_address_wlan" />
+
+    <!-- IP Address cable -->
+    <de.abacuselectronics.aroiorc.ui.custom.SublabelView
+      android:id="@+id/detail_system_ip_address_cable"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      app:indent_type="indent"
+      app:subtitle="@string/detail_system_ip_address_cable" />
+
+    <!-- IP Address wlan -->
+    <de.abacuselectronics.aroiorc.ui.custom.SublabelView
+      android:id="@+id/detail_system_ip_address_wlan"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      app:indent_type="indent"
+      app:subtitle="@string/detail_system_ip_address_wlan" />
+
+    <!-- Squeezeserver -->
+    <de.abacuselectronics.aroiorc.ui.custom.SublabelView
+      android:id="@+id/detail_system_squeeze"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      app:indent_type="indent"
+      app:subtitle="@string/detail_system_squeezeserver" />
+
+    <!-- Update overline -->
+    <androidx.appcompat.widget.AppCompatTextView
+      style="@style/TextAppearance.Aroio.Overline"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:paddingStart="16dp"
+      android:paddingTop="24dp"
+      android:paddingEnd="16dp"
+      android:text="@string/detail_system_overline_update" />
+
+    <View
+      android:layout_width="match_parent"
+      android:layout_height="1dp"
+      android:background="@color/black_200" />
+
+    <!-- BETA usage -->
+    <de.abacuselectronics.aroiorc.ui.custom.OneLineSwitchView
+      android:id="@+id/detail_system_use_beta"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      app:indent_type="indent"
+      app:label="@string/detail_system_beta_version_search" />
+
+    <!-- Start update -->
+    <com.google.android.material.button.MaterialButton
+      android:id="@+id/detail_system_start_update_button"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_margin="@dimen/default_space"
+      android:text="@string/detail_system_search_update" />
+
+  </LinearLayout>
+
+</ScrollView>
