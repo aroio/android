@@ -3,8 +3,9 @@ package de.abacuselectronics.aroiorc.viewmodel.start
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.launch
 
 class StartViewModel : ViewModel() {
 	
@@ -19,7 +20,7 @@ class StartViewModel : ViewModel() {
 	private val _state = MutableLiveData<State>()
 	val state: LiveData<State> = _state
 	
-	suspend fun login(username: String, password: String) = withContext(IO) {
+	fun login(username: String, password: String) = viewModelScope.launch(IO) {
 		try {
 			_state.postValue(State.Loading)
 			tryLogin(username, password, ipAddress)
