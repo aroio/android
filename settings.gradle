@@ -1,2 +1,3 @@
+include ':nsd'
 rootProject.name='AroioRC'
 include ':app'
