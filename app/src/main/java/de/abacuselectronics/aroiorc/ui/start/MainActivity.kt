@@ -5,13 +5,11 @@ import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.observe
 import de.abacuselectronics.aroiorc.R
 import de.abacuselectronics.aroiorc.aroioktx.setDefaultAnimations
 import de.abacuselectronics.aroiorc.ui.detail.DetailActivity
 import de.abacuselectronics.aroiorc.viewmodel.start.StartViewModel
-import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity(),
 	LoginFragment.Listener,
@@ -52,7 +50,7 @@ class MainActivity : AppCompatActivity(),
 	}
 	
 	override fun onLogin(username: String, password: String) {
-		lifecycleScope.launch { viewModel.login(username, password) }
+		viewModel.login(username, password)
 	}
 	
 	override fun onListAroioClicked(aroioIpAddress: String) {
