@@ -3,6 +3,13 @@ package de.lennartegb.nsd
 import android.content.Context
 import android.net.nsd.NsdManager
 import android.net.nsd.NsdServiceInfo
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.launch
 import java.net.InetAddress
 
 class NetworkServiceDiscovery private constructor(
@@ -10,24 +17,32 @@ class NetworkServiceDiscovery private constructor(
 	private val serviceInfo: NsdServiceInfo
 ) {
 	
+	sealed class Result {
+		data class ServiceFound(val service: NsdServiceInfo) : Result()
+		data class ServiceLost(val service: NsdServiceInfo) : Result()
+	}
+	
 	companion object {
 		// NOTE: The only protocol that can be used.
 		private const val protocol = NsdManager.PROTOCOL_DNS_SD
 	}
 	
+	private val dispatcher = IO
+	private val discoveryJob = Job()
+	private val coroutineScope = CoroutineScope(dispatcher + discoveryJob)
 	
 	private val nsdManager =
 		(context.getSystemService(Context.NSD_SERVICE) as NsdManager)
 	
 	
-	fun discover() {
+	fun discover(): Flow<Result> = flow<Result> {
 		nsdManager.discoverServices(
 			serviceInfo.serviceType,
 			protocol,
 			object : NsdManager.DiscoveryListener {
 				override fun onServiceFound(serviceInfo: NsdServiceInfo?) {
 					if (serviceInfo == null) return
-					TODO("Need service be emitted with found state")
+					coroutineScope.launch { this@flow.emit(Result.ServiceFound(serviceInfo)) }
 				}
 				
 				override fun onStopDiscoveryFailed(
@@ -54,10 +69,10 @@ class NetworkServiceDiscovery private constructor(
 				
 				override fun onServiceLost(serviceInfo: NsdServiceInfo?) {
 					if (serviceInfo == null) return
-					TODO("Need service be emitted with lost state")
+					coroutineScope.launch { this@flow.emit(Result.ServiceLost(serviceInfo)) }
 				}
 			})
-	}
+	}.flowOn(dispatcher)
 	
 	
 	@Suppress("unused")
@@ -84,10 +99,7 @@ class NetworkServiceDiscovery private constructor(
 			apply { serviceInfo.setAttribute(key, value) }
 		
 		fun build(): NetworkServiceDiscovery {
-			return NetworkServiceDiscovery(
-				context = context,
-				serviceInfo = serviceInfo
-			)
+			return NetworkServiceDiscovery(context, serviceInfo)
 		}
 		
 	}
