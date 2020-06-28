@@ -12,10 +12,7 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import java.net.InetAddress
 
-class NetworkServiceDiscovery private constructor(
-	context: Context,
-	private val serviceInfo: NsdServiceInfo
-) {
+class NetworkServiceDiscovery(context: Context) {
 	
 	sealed class Result {
 		data class ServiceFound(val service: NsdServiceInfo) : Result()
@@ -35,9 +32,9 @@ class NetworkServiceDiscovery private constructor(
 		(context.getSystemService(Context.NSD_SERVICE) as NsdManager)
 	
 	
-	fun discover(): Flow<Result> = flow<Result> {
+	fun discover(nsdInfo: NsdInfo): Flow<Result> = flow<Result> {
 		nsdManager.discoverServices(
-			serviceInfo.serviceType,
+			nsdInfo.get().serviceType,
 			protocol,
 			object : NsdManager.DiscoveryListener {
 				override fun onServiceFound(serviceInfo: NsdServiceInfo?) {
@@ -49,14 +46,14 @@ class NetworkServiceDiscovery private constructor(
 					serviceType: String?,
 					errorCode: Int
 				) {
-					/* discovery stop failed is mostly not necessary and is ignored here  */
+					nsdManager.stopServiceDiscovery(this)
 				}
 				
 				override fun onStartDiscoveryFailed(
 					serviceType: String?,
 					errorCode: Int
 				) {
-					/* discovery start failed is mostly not necessary and is ignored here  */
+					nsdManager.stopServiceDiscovery(this)
 				}
 				
 				override fun onDiscoveryStarted(serviceType: String?) {
@@ -73,15 +70,17 @@ class NetworkServiceDiscovery private constructor(
 				}
 			})
 	}.flowOn(dispatcher)
-	
-	
+
 	@Suppress("unused")
-	class Builder(private val context: Context) {
+	class NsdInfo {
 		
 		private val serviceInfo = NsdServiceInfo()
 		
 		fun setServiceName(serviceName: String) =
 			apply { serviceInfo.serviceName = serviceName }
+		
+		fun setServiceType(serviceType: String) =
+			apply { serviceInfo.serviceType = serviceType }
 		
 		fun setPort(port: Int) =
 			apply { serviceInfo.port = port }
@@ -92,16 +91,10 @@ class NetworkServiceDiscovery private constructor(
 		fun setHost(host: String) =
 			apply { serviceInfo.host = InetAddress.getByName(host) }
 		
-		fun setServiceType(serviceType: String) =
-			apply { serviceInfo.serviceType = serviceType }
-		
 		fun setAttribute(key: String, value: String) =
 			apply { serviceInfo.setAttribute(key, value) }
 		
-		fun build(): NetworkServiceDiscovery {
-			return NetworkServiceDiscovery(context, serviceInfo)
-		}
-		
+		internal fun get() = serviceInfo
 	}
 	
 }
