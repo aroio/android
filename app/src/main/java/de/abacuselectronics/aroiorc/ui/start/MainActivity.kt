@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
 import de.abacuselectronics.aroiorc.R
-import de.abacuselectronics.aroiorc.aroioktx.setDefaultAnimations
+import de.abacuselectronics.aroiorc.extensions.setDefaultAnimations
 import de.abacuselectronics.aroiorc.ui.detail.DetailActivity
 import de.abacuselectronics.aroiorc.viewmodel.start.StartViewModel
 

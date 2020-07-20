@@ -5,6 +5,8 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import de.lennartegb.nsd.NetworkServiceDiscovery
+import de.lennartegb.nsd.NsdInfo
+import de.lennartegb.nsd.NsdResult
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -13,19 +15,18 @@ import kotlinx.coroutines.launch
 class AroioListViewModel(private val networkServiceDiscovery: NetworkServiceDiscovery) :
 	ViewModel() {
 	
-	private val nsdInfo = NetworkServiceDiscovery.NsdInfo()
-		.setServiceType("_aroio._tcp")
+	private val nsdInfo = NsdInfo().setServiceType("_aroio._tcp")
 	
-	
-	fun startDiscovery() = viewModelScope.launch {
-		networkServiceDiscovery.discover(nsdInfo).collect { result ->
-			when (result) {
-				is NetworkServiceDiscovery.Result.ServiceFound -> serviceFound(result.service)
-				is NetworkServiceDiscovery.Result.ServiceLost  -> serviceLost(result.service)
+	init {
+		viewModelScope.launch {
+			networkServiceDiscovery.discover(nsdInfo).collect { result ->
+				when (result) {
+					is NsdResult.ServiceFound -> serviceFound(result.service)
+					is NsdResult.ServiceLost  -> serviceLost(result.service)
+				}
 			}
 		}
 	}
-	
 	
 	private fun serviceLost(service: NsdServiceInfo) {
 		Log.i(this::class.java.simpleName, "Service lost: $service")
