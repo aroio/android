@@ -33,8 +33,9 @@ internal class NetworkServiceDiscoveryImpl(context: Context) : NetworkServiceDis
 			object : NsdManager.DiscoveryListener {
 				override fun onServiceFound(serviceInfo: NsdServiceInfo?) {
 					if (serviceInfo == null) return
+					val nsdService = NsdService(serviceInfo.host, serviceInfo.port)
 					coroutineScope.launch {
-						this@flow.emit(NsdResult.ServiceFound(serviceInfo))
+						this@flow.emit(NsdResult.ServiceFound(nsdService))
 					}
 				}
 				
@@ -62,8 +63,9 @@ internal class NetworkServiceDiscoveryImpl(context: Context) : NetworkServiceDis
 				
 				override fun onServiceLost(serviceInfo: NsdServiceInfo?) {
 					if (serviceInfo == null) return
+					val nsdService = NsdService(serviceInfo.host, serviceInfo.port)
 					coroutineScope.launch {
-						this@flow.emit(NsdResult.ServiceLost(serviceInfo))
+						this@flow.emit(NsdResult.ServiceLost(nsdService))
 					}
 				}
 			})
