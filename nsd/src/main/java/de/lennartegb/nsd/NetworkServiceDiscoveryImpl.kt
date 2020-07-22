@@ -1,8 +1,9 @@
 package de.lennartegb.nsd
 
-import android.content.Context
 import android.net.nsd.NsdManager
 import android.net.nsd.NsdServiceInfo
+import de.lennartegb.nsd.model.NsdResult
+import de.lennartegb.nsd.model.NsdService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Job
@@ -11,7 +12,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 
-internal class NetworkServiceDiscoveryImpl(context: Context) : NetworkServiceDiscovery {
+internal class NetworkServiceDiscoveryImpl(private val nsdManager: NsdManager) : NetworkServiceDiscovery {
 	
 	companion object {
 		// NOTE: The only protocol that can be used.
@@ -22,10 +23,6 @@ internal class NetworkServiceDiscoveryImpl(context: Context) : NetworkServiceDis
 	private val discoveryJob = Job()
 	private val coroutineScope = CoroutineScope(dispatcher + discoveryJob)
 	
-	private val nsdManager =
-		(context.getSystemService(Context.NSD_SERVICE) as NsdManager)
-	
-	
 	override fun discover(nsdInfo: NsdInfo): Flow<NsdResult> = flow {
 		nsdManager.discoverServices(
 			nsdInfo.get().serviceType,
@@ -33,7 +30,11 @@ internal class NetworkServiceDiscoveryImpl(context: Context) : NetworkServiceDis
 			object : NsdManager.DiscoveryListener {
 				override fun onServiceFound(serviceInfo: NsdServiceInfo?) {
 					if (serviceInfo == null) return
-					val nsdService = NsdService(serviceInfo.host, serviceInfo.port)
+					val nsdService =
+						NsdService(
+							serviceInfo.host,
+							serviceInfo.port
+						)
 					coroutineScope.launch {
 						this@flow.emit(NsdResult.ServiceFound(nsdService))
 					}
@@ -63,7 +64,11 @@ internal class NetworkServiceDiscoveryImpl(context: Context) : NetworkServiceDis
 				
 				override fun onServiceLost(serviceInfo: NsdServiceInfo?) {
 					if (serviceInfo == null) return
-					val nsdService = NsdService(serviceInfo.host, serviceInfo.port)
+					val nsdService =
+						NsdService(
+							serviceInfo.host,
+							serviceInfo.port
+						)
 					coroutineScope.launch {
 						this@flow.emit(NsdResult.ServiceLost(nsdService))
 					}

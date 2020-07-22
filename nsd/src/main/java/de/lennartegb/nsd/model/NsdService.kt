@@ -1,4 +1,4 @@
-package de.lennartegb.nsd
+package de.lennartegb.nsd.model
 
 import java.net.InetAddress
 

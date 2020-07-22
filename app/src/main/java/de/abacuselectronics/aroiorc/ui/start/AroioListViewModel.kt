@@ -5,8 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import de.lennartegb.nsd.NetworkServiceDiscovery
 import de.lennartegb.nsd.NsdInfo
-import de.lennartegb.nsd.NsdResult
-import de.lennartegb.nsd.NsdService
+import de.lennartegb.nsd.model.NsdResult
+import de.lennartegb.nsd.model.NsdService
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch

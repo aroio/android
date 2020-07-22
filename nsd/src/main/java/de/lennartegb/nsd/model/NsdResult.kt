@@ -1,4 +1,4 @@
-package de.lennartegb.nsd
+package de.lennartegb.nsd.model
 
 sealed class NsdResult {
 	class ServiceFound(val service: NsdService) : NsdResult()
