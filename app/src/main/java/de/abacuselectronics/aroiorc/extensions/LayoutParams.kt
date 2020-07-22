@@ -1,4 +1,4 @@
-package de.abacuselectronics.aroiorc.aroioktx
+package de.abacuselectronics.aroiorc.extensions
 
 import android.view.ViewGroup
 import androidx.core.view.updateMarginsRelative

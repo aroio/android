@@ -7,7 +7,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import de.abacuselectronics.aroiorc.R
-import de.abacuselectronics.aroiorc.aroioktx.updateMarginsRelative
+import de.abacuselectronics.aroiorc.extensions.updateMarginsRelative
 import de.abacuselectronics.aroiorc.ui.recycler.RecyclerItem
 
 

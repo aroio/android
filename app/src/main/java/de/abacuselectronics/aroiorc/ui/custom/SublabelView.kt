@@ -8,7 +8,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.core.content.withStyledAttributes
 import de.abacuselectronics.aroiorc.R
-import de.abacuselectronics.aroiorc.aroioktx.textAppearance
+import de.abacuselectronics.aroiorc.extensions.textAppearance
 
 class SublabelView @JvmOverloads constructor(
   context: Context,

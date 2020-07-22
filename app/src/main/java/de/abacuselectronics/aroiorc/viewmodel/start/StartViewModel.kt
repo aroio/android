@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class StartViewModel : ViewModel() {
@@ -34,6 +35,7 @@ class StartViewModel : ViewModel() {
 		password: String,
 		ipAddress: String
 	) {
+		delay(1000)
 		// TODO - Implement the login process. Currently only set state to success
 		//        for debugging purposes.
 		_state.postValue(State.Success)
