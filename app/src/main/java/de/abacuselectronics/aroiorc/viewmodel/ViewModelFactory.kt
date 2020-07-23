@@ -3,6 +3,7 @@ package de.abacuselectronics.aroiorc.viewmodel
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import de.abacuselectronics.aroiorc.datasource.remote.AroioRemoteServiceImpl
 import de.abacuselectronics.aroiorc.ui.list.AroioListViewModel
 import de.abacuselectronics.aroiorc.ui.list.LoginViewModel
 import de.lennartegb.nsd.extensions.getNetworkServiceDiscovery
@@ -20,7 +21,10 @@ class ViewModelFactory(
 		}
 		
 		if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
-			return LoginViewModel(requireNotNull(ipAddress)) as T
+			return LoginViewModel(
+				requireNotNull(ipAddress),
+				AroioRemoteServiceImpl()
+			) as T
 		}
 		
 		throw IllegalStateException("Unknown ViewModel could not be created")

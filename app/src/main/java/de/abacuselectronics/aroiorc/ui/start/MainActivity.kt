@@ -8,9 +8,7 @@ import de.abacuselectronics.aroiorc.extensions.setDefaultAnimations
 import de.abacuselectronics.aroiorc.ui.list.AroioListFragment
 import de.abacuselectronics.aroiorc.ui.list.LoginFragment
 
-class MainActivity : AppCompatActivity(),
-	LoginFragment.Listener,
-	AroioListFragment.Listener {
+class MainActivity : AppCompatActivity(), AroioListFragment.Listener {
 	
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -28,12 +26,7 @@ class MainActivity : AppCompatActivity(),
 		
 		when (fragment) {
 			is AroioListFragment -> fragment.listener = this
-			is LoginFragment     -> fragment.listener = this
 		}
-	}
-	
-	override fun onCancel() {
-		supportFragmentManager.popBackStack()
 	}
 	
 	override fun onListAroioClicked(aroioIpAddress: String) {

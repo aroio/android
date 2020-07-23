@@ -1,4 +1,4 @@
-package de.abacuselectronics.aroiorc.datasource
+package de.abacuselectronics.aroiorc.datasource.remote
 
 interface AroioRemoteService {
 	suspend fun authenticate(
