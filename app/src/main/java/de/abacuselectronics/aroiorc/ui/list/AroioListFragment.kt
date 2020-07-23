@@ -1,4 +1,4 @@
-package de.abacuselectronics.aroiorc.ui.start
+package de.abacuselectronics.aroiorc.ui.list
 
 import android.os.Bundle
 import android.view.View
