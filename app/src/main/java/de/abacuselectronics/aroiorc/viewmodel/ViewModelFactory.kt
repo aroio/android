@@ -3,23 +3,27 @@ package de.abacuselectronics.aroiorc.viewmodel
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import de.abacuselectronics.aroiorc.ui.start.AroioListViewModel
+import de.abacuselectronics.aroiorc.ui.list.AroioListViewModel
+import de.abacuselectronics.aroiorc.ui.list.LoginViewModel
 import de.lennartegb.nsd.extensions.getNetworkServiceDiscovery
 
-class ViewModelFactory(private val context: Context) :
-	ViewModelProvider.Factory {
+class ViewModelFactory(
+	private val context: Context? = null,
+	private val ipAddress: String? = null
+) : ViewModelProvider.Factory {
 	
 	@Suppress("UNCHECKED_CAST")
 	override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-		when {
-			modelClass.isAssignableFrom(AroioListViewModel::class.java) -> {
-				val nsd = context.getNetworkServiceDiscovery()
-				return AroioListViewModel(nsd) as T
-			}
-			else                                                        -> {
-				throw IllegalStateException("Unknown ViewModel could not be created")
-			}
+		if (modelClass.isAssignableFrom(AroioListViewModel::class.java)) {
+			val nsd = requireNotNull(context).getNetworkServiceDiscovery()
+			return AroioListViewModel(nsd) as T
 		}
+		
+		if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
+			return LoginViewModel(requireNotNull(ipAddress)) as T
+		}
+		
+		throw IllegalStateException("Unknown ViewModel could not be created")
 	}
 	
 }
