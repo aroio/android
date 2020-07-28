@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import de.abacuselectronics.aroiorc.datasource.remote.AroioRemoteService
+import de.abacuselectronics.aroiorc.datasource.remote.AuthResult
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 
@@ -38,10 +39,9 @@ class LoginViewModel(
 			return State.Fail(FailReason.InvalidInput)
 		}
 		
-		return if (remoteService.authenticate(ipAddress, username, password)) {
-			State.Success
-		} else {
-			State.Fail(FailReason.AuthenticationFailed)
+		return when (remoteService.authenticate(ipAddress, username, password)) {
+			is AuthResult.Success -> State.Success
+			is AuthResult.Failure -> State.Fail(FailReason.AuthenticationFailed)
 		}
 	}
 	
