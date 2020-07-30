@@ -21,10 +21,7 @@ class ViewModelFactory(
 		}
 		
 		if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
-			return LoginViewModel(
-				requireNotNull(ipAddress),
-				AroioRemoteServiceImpl()
-			) as T
+			return LoginViewModel(AroioRemoteServiceImpl(requireNotNull(ipAddress))) as T
 		}
 		
 		throw IllegalStateException("Unknown ViewModel could not be created")

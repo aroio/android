@@ -6,9 +6,5 @@ sealed class AuthResult {
 }
 
 interface AroioRemoteService {
-	suspend fun authenticate(
-		ipAddress: String,
-		username: String,
-		password: String
-	): AuthResult
+	suspend fun authenticate(username: String, password: String): AuthResult
 }

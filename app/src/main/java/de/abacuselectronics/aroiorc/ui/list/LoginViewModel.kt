@@ -10,7 +10,6 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 
 class LoginViewModel(
-	private val ipAddress: String,
 	private val remoteService: AroioRemoteService
 ) : ViewModel() {
 	
@@ -39,7 +38,7 @@ class LoginViewModel(
 			return State.Fail(FailReason.InvalidInput)
 		}
 		
-		return when (remoteService.authenticate(ipAddress, username, password)) {
+		return when (remoteService.authenticate(username, password)) {
 			is AuthResult.Success -> State.Success
 			is AuthResult.Failure -> State.Fail(FailReason.AuthenticationFailed)
 		}
