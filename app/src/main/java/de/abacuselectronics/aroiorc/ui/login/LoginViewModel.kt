@@ -1,4 +1,4 @@
-package de.abacuselectronics.aroiorc.ui.list
+package de.abacuselectronics.aroiorc.ui.login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -35,12 +35,16 @@ class LoginViewModel(
 	
 	private suspend fun tryLogin(username: String, password: String): State {
 		if (username.isBlank() or password.isBlank()) {
-			return State.Fail(FailReason.InvalidInput)
+			return State.Fail(
+				FailReason.InvalidInput
+			)
 		}
 		
 		return when (remoteService.authenticate(username, password)) {
 			is AuthResult.Success -> State.Success
-			is AuthResult.Failure -> State.Fail(FailReason.AuthenticationFailed)
+			is AuthResult.Failure -> State.Fail(
+				FailReason.AuthenticationFailed
+			)
 		}
 	}
 	

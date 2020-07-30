@@ -1,4 +1,4 @@
-package de.abacuselectronics.aroiorc.ui.list
+package de.abacuselectronics.aroiorc.ui.login
 
 import android.os.Bundle
 import android.view.View
@@ -95,7 +95,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 		fun newInstance(aroioName: String): LoginFragment {
 			val bundle = Bundle()
 			bundle.putString(KEY_AROIO_IP_ADDRESS, aroioName)
-			return LoginFragment().apply { arguments = bundle }
+			return LoginFragment()
+				.apply { arguments = bundle }
 		}
 	}
 }
