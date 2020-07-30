@@ -8,14 +8,15 @@ import androidx.recyclerview.widget.RecyclerView
 import de.abacuselectronics.aroiorc.R
 import de.abacuselectronics.aroiorc.datasource.local.Aroio
 
-class AroioListAdapter : RecyclerView.Adapter<AroioListAdapter.Holder>() {
+class AroioListAdapter(private val onClick: (Aroio) -> Unit) :
+	RecyclerView.Adapter<AroioListAdapter.Holder>() {
 	
 	private var aroioListItems = listOf<Aroio>()
 	
 	override fun onCreateViewHolder(
 		parent: ViewGroup,
 		viewType: Int
-	): AroioListAdapter.Holder {
+	): Holder {
 		val view = LayoutInflater.from(parent.context)
 			.inflate(R.layout.list_item_aroio, parent, false)
 		return Holder(view)
@@ -23,15 +24,12 @@ class AroioListAdapter : RecyclerView.Adapter<AroioListAdapter.Holder>() {
 	
 	override fun getItemCount(): Int = aroioListItems.size
 	
-	override fun onBindViewHolder(
-		holder: AroioListAdapter.Holder,
-		position: Int
-	) {
-		holder.bind(aroioListItems[position])
+	override fun onBindViewHolder(holder: Holder, position: Int) {
+		holder.bind(aroioListItems[position], onClick)
 	}
 	
-	fun setAroios(aroios: List<Aroio>) {
-		aroioListItems = aroios
+	fun setAroioList(aroioList: List<Aroio>) {
+		aroioListItems = aroioList
 		notifyDataSetChanged()
 	}
 	
@@ -41,9 +39,10 @@ class AroioListAdapter : RecyclerView.Adapter<AroioListAdapter.Holder>() {
 		private val ipAddress: AppCompatTextView =
 			itemView.findViewById(R.id.aroio_list_ip_address)
 		
-		fun bind(aroio: Aroio) {
+		fun bind(aroio: Aroio, onClick: (Aroio) -> Unit) {
 			name.text = aroio.name
 			ipAddress.text = aroio.ipAddress
+			itemView.setOnClickListener { onClick(aroio) }
 		}
 	}
 	
