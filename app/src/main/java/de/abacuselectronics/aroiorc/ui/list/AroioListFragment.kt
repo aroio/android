@@ -5,21 +5,32 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import de.abacuselectronics.aroiorc.R
+import de.abacuselectronics.aroiorc.databinding.FragmentAroioListBinding
+import de.abacuselectronics.aroiorc.datasource.local.Aroio
 import de.abacuselectronics.aroiorc.viewmodel.ViewModelFactory
 
-class AroioListFragment : Fragment(R.layout.fragment_recycler) {
+class AroioListFragment : Fragment(R.layout.fragment_aroio_list) {
 	
 	interface Listener {
 		fun onListAroioClicked(aroioIpAddress: String)
 	}
 	
-	private val adapter = AroioListAdapter()
-	private lateinit var recyclerView: RecyclerView
+	private lateinit var binding: FragmentAroioListBinding
+	private val adapter = AroioListAdapter {
+		listener?.onListAroioClicked(it.ipAddress)
+	}
+	
 	private val viewModel: AroioListViewModel by viewModels {
 		ViewModelFactory(requireContext())
+	}
+	private val stateObserver = Observer<AroioListViewModel.State> { state ->
+		when (state) {
+			AroioListViewModel.State.NoDevicesFound      -> displayNoDevicesFound()
+			is AroioListViewModel.State.DevicesAvailable -> displayFoundDevices(
+				state.aroioList
+			)
+		}
 	}
 	
 	var listener: Listener? = null
@@ -27,12 +38,20 @@ class AroioListFragment : Fragment(R.layout.fragment_recycler) {
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 		
-		recyclerView = view.findViewById(R.id.recycler)
-		recyclerView.adapter = adapter
-		recyclerView.layoutManager = LinearLayoutManager(view.context)
-		viewModel.aroios.observe(
-			viewLifecycleOwner,
-			Observer { adapter.setAroios(it) })
+		binding = FragmentAroioListBinding.bind(view)
+		binding.recycler.adapter = adapter
+		viewModel.state.observe(viewLifecycleOwner, stateObserver)
+	}
+	
+	private fun displayFoundDevices(aroioList: List<Aroio>) {
+		binding.recycler.visibility = View.VISIBLE
+		binding.fallbackView.visibility = View.GONE
+		adapter.setAroioList(aroioList)
+	}
+	
+	private fun displayNoDevicesFound() {
+		binding.recycler.visibility = View.GONE
+		binding.fallbackView.visibility = View.VISIBLE
 	}
 	
 	companion object {
