@@ -1,12 +1,12 @@
 package de.lennartegb.nsd
 
 import android.content.Context
-import android.net.nsd.NsdManager
 import android.util.Log
 import com.github.druk.rx2dnssd.BonjourService
 import com.github.druk.rx2dnssd.Rx2DnssdEmbedded
 import de.lennartegb.nsd.model.NsdResult
 import de.lennartegb.nsd.model.NsdService
+import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Job
@@ -18,19 +18,15 @@ import kotlinx.coroutines.launch
 internal class NetworkServiceDiscoveryImpl(context: Context) :
 	NetworkServiceDiscovery {
 	
-	companion object {
-		private const val PROTOCOL = NsdManager.PROTOCOL_DNS_SD
-	}
-	
 	private val dnssd = Rx2DnssdEmbedded(context)
-	
 	private val dispatcher = IO
 	private val discoveryJob = Job()
 	private val coroutineScope = CoroutineScope(dispatcher + discoveryJob)
 	
 	override fun discover(nsdInfo: NsdInfo): Flow<NsdResult> = flow {
-		dnssd.browse("_http._tcp", "local.")
+		dnssd.browse(nsdInfo.registrationType, "local.")
 			.compose(dnssd.resolve())
+			.subscribeOn(Schedulers.io())
 			.subscribe { service ->
 				Log.i(
 					this@NetworkServiceDiscoveryImpl.javaClass.simpleName,
@@ -44,6 +40,10 @@ internal class NetworkServiceDiscoveryImpl(context: Context) :
 				}
 			}
 	}.flowOn(dispatcher)
+	
+	override fun tearDown() {
+		discoveryJob.cancel()
+	}
 	
 	private fun BonjourService.toNsdService(): NsdService {
 		return NsdService(requireNotNull(hostname), port)
