@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.withStyledAttributes
 import de.abacuselectronics.aroiorc.R
 import de.abacuselectronics.aroiorc.extensions.textAppearance
+import de.abacuselectronics.aroiorc.ui.custom.divider.DividerType
 
 class SublabelView @JvmOverloads constructor(
   context: Context,

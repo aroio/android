@@ -6,6 +6,5 @@ import de.lennartegb.nsd.NetworkServiceDiscovery
 import de.lennartegb.nsd.NetworkServiceDiscoveryImpl
 
 fun Context.getNetworkServiceDiscovery(): NetworkServiceDiscovery {
-	val manager = getSystemService(Context.NSD_SERVICE) as NsdManager
-	return NetworkServiceDiscoveryImpl(manager)
+	return NetworkServiceDiscoveryImpl(this)
 }

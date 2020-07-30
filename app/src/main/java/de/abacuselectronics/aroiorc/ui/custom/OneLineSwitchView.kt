@@ -12,6 +12,8 @@ import androidx.core.content.withStyledAttributes
 import com.google.android.material.switchmaterial.SwitchMaterial
 import de.abacuselectronics.aroiorc.R
 import de.abacuselectronics.aroiorc.extensions.textAppearance
+import de.abacuselectronics.aroiorc.ui.custom.divider.DividerFactory
+import de.abacuselectronics.aroiorc.ui.custom.divider.DividerType
 
 class OneLineSwitchView @JvmOverloads constructor(
   context: Context,
@@ -27,20 +29,17 @@ class OneLineSwitchView @JvmOverloads constructor(
     /**
      * Listening to check event of [SwitchMaterial] within [OneLineSwitchView].
      * */
-    fun onCheckedListener(
-      oneLineSwitchView: OneLineSwitchView,
-      isChecked: Boolean
-    )
+    fun onCheckedListener(oneLineSwitchView: OneLineSwitchView, isChecked: Boolean)
 
   }
 
   private var checkListener: CheckListener? = null
 
+  private val dividerId = View.generateViewId()
   private val label: AppCompatTextView = AppCompatTextView(context, attrs)
   private val switch: SwitchMaterial = SwitchMaterial(context, attrs)
 
   private lateinit var dividerType: DividerType
-  private val dividerId = R.id.divider
 
   init {
     label.id = View.generateViewId()
