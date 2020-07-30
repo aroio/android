@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<androidx.recyclerview.widget.RecyclerView
+		android:id="@+id/recycler"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+	<LinearLayout
+    android:id="@+id/fallback_view"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center"
+		android:orientation="vertical">
+
+		<androidx.appcompat.widget.AppCompatImageView
+			android:layout_width="200dp"
+			android:layout_height="200dp"
+			android:src="@drawable/ic_warning_24"
+			android:tint="@color/black_400" />
+
+		<androidx.appcompat.widget.AppCompatTextView
+			style="@style/TextAppearance.MaterialComponents.Subtitle1"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center"
+			android:text="@string/list_aroio_no_devices_available"
+			android:textColor="@color/black_400" />
+	</LinearLayout>
+
+</FrameLayout>
