@@ -17,7 +17,7 @@ class AroioListAdapter : RecyclerView.Adapter<AroioListAdapter.Holder>() {
 		viewType: Int
 	): AroioListAdapter.Holder {
 		val view = LayoutInflater.from(parent.context)
-			.inflate(R.layout.recycleritem_aroio_list, parent, false)
+			.inflate(R.layout.list_item_aroio, parent, false)
 		return Holder(view)
 	}
 	
