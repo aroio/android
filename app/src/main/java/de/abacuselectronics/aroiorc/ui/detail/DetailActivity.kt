@@ -41,12 +41,22 @@ class DetailActivity : AppCompatActivity(),
 			R.id.menu_detail_nav_system    -> viewPager.currentItem = 1
 			R.id.menu_detail_nav_convolver -> viewPager.currentItem = 2
 			R.id.menu_detail_nav_audio     -> viewPager.currentItem = 3
+			else                           -> return false
 		}
 		return true
 	}
 	
+	private fun requireBaseAddress() = intent.extras?.getString(KEY_BASE_ADDRESS)
+		?: throw IllegalStateException("Base IP address is required for the DetailActivity")
+	
+	
 	companion object {
-		fun createIntent(context: Context): Intent =
-			Intent(context, DetailActivity::class.java)
+		private const val KEY_BASE_ADDRESS =
+			"de.abacuselectronics.aroiorc.ui.detail.base_address"
+		
+		fun createIntent(context: Context, ipAddress: String): Intent =
+			Intent(context, DetailActivity::class.java).apply {
+				putExtra(KEY_BASE_ADDRESS, ipAddress)
+			}
 	}
 }
