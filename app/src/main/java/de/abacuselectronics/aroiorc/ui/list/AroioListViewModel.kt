@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import de.abacuselectronics.aroiorc.datasource.local.Aroio
 import de.lennartegb.nsd.NetworkServiceDiscovery
+import de.lennartegb.nsd.extensions.containsNot
 import de.lennartegb.nsd.model.NsdResult
 import de.lennartegb.nsd.model.NsdService
 import kotlinx.coroutines.InternalCoroutinesApi
@@ -38,9 +39,9 @@ class AroioListViewModel(
 	}
 	
 	private fun serviceFound(service: NsdService) {
-		val list = requireNotNull(_aroioList.value)
 		val aroio = getAroioFromService(service)
-		if (!list.contains(aroio)) {
+		val list = requireNotNull(_aroioList.value)
+		if (list.containsNot(aroio)) {
 			_aroioList.postValue(list.plus(aroio))
 		}
 	}
