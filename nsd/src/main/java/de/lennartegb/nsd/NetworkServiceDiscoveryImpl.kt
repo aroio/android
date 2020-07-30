@@ -23,8 +23,8 @@ internal class NetworkServiceDiscoveryImpl(context: Context) :
 	private val discoveryJob = Job()
 	private val coroutineScope = CoroutineScope(dispatcher + discoveryJob)
 	
-	override fun discover(nsdInfo: NsdInfo): Flow<NsdResult> = flow {
-		dnssd.browse(nsdInfo.registrationType, "local.")
+	override fun discover(): Flow<NsdResult> = flow {
+		dnssd.browse("_aroio._tcp", "local.")
 			.compose(dnssd.resolve())
 			.subscribeOn(Schedulers.io())
 			.subscribe { service ->
@@ -46,7 +46,7 @@ internal class NetworkServiceDiscoveryImpl(context: Context) :
 	}
 	
 	private fun BonjourService.toNsdService(): NsdService {
-		return NsdService(requireNotNull(hostname), port)
+		return NsdService(requireNotNull(inet4Address), port)
 	}
 	
 }
