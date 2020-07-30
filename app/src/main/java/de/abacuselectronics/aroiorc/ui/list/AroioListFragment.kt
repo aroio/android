@@ -30,7 +30,7 @@ class AroioListFragment : Fragment(R.layout.fragment_recycler) {
 		recyclerView = view.findViewById(R.id.recycler)
 		recyclerView.adapter = adapter
 		recyclerView.layoutManager = LinearLayoutManager(view.context)
-		viewModel.aroios.observe(
+		viewModel.aroioList.observe(
 			viewLifecycleOwner,
 			Observer { adapter.setAroios(it) })
 	}
