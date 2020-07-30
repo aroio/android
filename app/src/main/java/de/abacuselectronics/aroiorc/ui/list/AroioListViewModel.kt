@@ -1,8 +1,10 @@
 package de.abacuselectronics.aroiorc.ui.list
 
-import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import de.abacuselectronics.aroiorc.datasource.local.Aroio
 import de.lennartegb.nsd.NetworkServiceDiscovery
 import de.lennartegb.nsd.NsdInfo
 import de.lennartegb.nsd.model.NsdResult
@@ -15,6 +17,9 @@ import kotlinx.coroutines.launch
 class AroioListViewModel(
 	private val networkServiceDiscovery: NetworkServiceDiscovery
 ) : ViewModel() {
+	
+	private val _aroios = MutableLiveData<List<Aroio>>(emptyList())
+	val aroios: LiveData<List<Aroio>> = _aroios
 	
 	init {
 		viewModelScope.launch {
@@ -29,11 +34,19 @@ class AroioListViewModel(
 	}
 	
 	private fun serviceLost(service: NsdService) {
-		Log.i(this::class.java.simpleName, "Service lost: $service")
+		val list = _aroios.value ?: return
+		val aroio: Aroio = getAroioFromService(service)
+		_aroios.postValue(list.filter { it != aroio })
 	}
 	
 	private fun serviceFound(service: NsdService) {
-		Log.i(this::class.java.simpleName, "Service found: $service")
+		val list = _aroios.value ?: return
+		val aroio = getAroioFromService(service)
+		_aroios.postValue(list.plus(aroio))
+	}
+	
+	private fun getAroioFromService(service: NsdService): Aroio {
+		TODO("Not yet implemented")
 	}
 	
 }

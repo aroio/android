@@ -1,4 +1,4 @@
-package de.abacuselectronics.aroiorc.ui.start
+package de.abacuselectronics.aroiorc.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

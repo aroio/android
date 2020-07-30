@@ -41,6 +41,7 @@ class DetailActivity : AppCompatActivity(),
 			R.id.menu_detail_nav_system    -> viewPager.currentItem = 1
 			R.id.menu_detail_nav_convolver -> viewPager.currentItem = 2
 			R.id.menu_detail_nav_audio     -> viewPager.currentItem = 3
+			else                           -> return false
 		}
 		return true
 	}
