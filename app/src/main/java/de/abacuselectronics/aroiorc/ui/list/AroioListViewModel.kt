@@ -3,7 +3,7 @@ package de.abacuselectronics.aroiorc.ui.list
 import androidx.lifecycle.*
 import de.abacuselectronics.aroiorc.datasource.local.Aroio
 import de.lennartegb.nsd.NetworkServiceDiscovery
-import de.lennartegb.nsd.NsdInfo
+import de.lennartegb.nsd.extensions.containsNot
 import de.lennartegb.nsd.model.NsdResult
 import de.lennartegb.nsd.model.NsdService
 import kotlinx.coroutines.InternalCoroutinesApi
@@ -29,8 +29,7 @@ class AroioListViewModel(
 	
 	init {
 		viewModelScope.launch {
-			val nsdInfo = NsdInfo().setServiceType("_aroio._tcp")
-			networkServiceDiscovery.discover(nsdInfo).collect { result ->
+			networkServiceDiscovery.discover().collect { result ->
 				when (result) {
 					is NsdResult.ServiceFound -> serviceFound(result.service)
 					is NsdResult.ServiceLost  -> serviceLost(result.service)
@@ -52,7 +51,10 @@ class AroioListViewModel(
 	}
 	
 	private fun getAroioFromService(service: NsdService): Aroio {
-		TODO("Not yet implemented")
+		return Aroio(
+			name = service.host.hostName,
+			ipAddress = service.host.hostAddress
+		)
 	}
 	
 }
