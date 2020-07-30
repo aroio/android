@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import de.abacuselectronics.aroiorc.R
 import de.abacuselectronics.aroiorc.extensions.setDefaultAnimations
 import de.abacuselectronics.aroiorc.ui.list.AroioListFragment
-import de.abacuselectronics.aroiorc.ui.list.LoginFragment
+import de.abacuselectronics.aroiorc.ui.login.LoginFragment
 
 class MainActivity : AppCompatActivity(), AroioListFragment.Listener {
 	
