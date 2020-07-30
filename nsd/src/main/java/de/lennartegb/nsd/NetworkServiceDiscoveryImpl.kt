@@ -1,7 +1,10 @@
 package de.lennartegb.nsd
 
+import android.content.Context
 import android.net.nsd.NsdManager
-import android.net.nsd.NsdServiceInfo
+import android.util.Log
+import com.github.druk.rx2dnssd.BonjourService
+import com.github.druk.rx2dnssd.Rx2DnssdEmbedded
 import de.lennartegb.nsd.model.NsdResult
 import de.lennartegb.nsd.model.NsdService
 import kotlinx.coroutines.CoroutineScope
@@ -12,68 +15,38 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 
-internal class NetworkServiceDiscoveryImpl(private val nsdManager: NsdManager) : NetworkServiceDiscovery {
+internal class NetworkServiceDiscoveryImpl(context: Context) :
+	NetworkServiceDiscovery {
 	
 	companion object {
-		// NOTE: The only protocol that can be used.
-		private const val protocol = NsdManager.PROTOCOL_DNS_SD
+		private const val PROTOCOL = NsdManager.PROTOCOL_DNS_SD
 	}
+	
+	private val dnssd = Rx2DnssdEmbedded(context)
 	
 	private val dispatcher = IO
 	private val discoveryJob = Job()
 	private val coroutineScope = CoroutineScope(dispatcher + discoveryJob)
 	
 	override fun discover(nsdInfo: NsdInfo): Flow<NsdResult> = flow {
-		nsdManager.discoverServices(
-			nsdInfo.get().serviceType,
-			protocol,
-			object : NsdManager.DiscoveryListener {
-				override fun onServiceFound(serviceInfo: NsdServiceInfo?) {
-					if (serviceInfo == null) return
-					val nsdService =
-						NsdService(
-							serviceInfo.host,
-							serviceInfo.port
-						)
-					coroutineScope.launch {
-						this@flow.emit(NsdResult.ServiceFound(nsdService))
-					}
+		dnssd.browse("_http._tcp", "local.")
+			.compose(dnssd.resolve())
+			.subscribe { service ->
+				Log.i(
+					this@NetworkServiceDiscoveryImpl.javaClass.simpleName,
+					service.toString()
+				)
+				val result = service?.toNsdService() ?: return@subscribe
+				if (service.isLost) {
+					coroutineScope.launch { emit(NsdResult.ServiceLost(result)) }
+				} else {
+					coroutineScope.launch { emit(NsdResult.ServiceFound(result)) }
 				}
-				
-				override fun onStopDiscoveryFailed(
-					serviceType: String?,
-					errorCode: Int
-				) {
-					nsdManager.stopServiceDiscovery(this)
-				}
-				
-				override fun onStartDiscoveryFailed(
-					serviceType: String?,
-					errorCode: Int
-				) {
-					nsdManager.stopServiceDiscovery(this)
-				}
-				
-				override fun onDiscoveryStarted(serviceType: String?) {
-					/* discovery started is mostly not necessary and is ignored here */
-				}
-				
-				override fun onDiscoveryStopped(serviceType: String?) {
-					/* discovery stops is mostly not necessary and is ignored here  */
-				}
-				
-				override fun onServiceLost(serviceInfo: NsdServiceInfo?) {
-					if (serviceInfo == null) return
-					val nsdService =
-						NsdService(
-							serviceInfo.host,
-							serviceInfo.port
-						)
-					coroutineScope.launch {
-						this@flow.emit(NsdResult.ServiceLost(nsdService))
-					}
-				}
-			})
+			}
 	}.flowOn(dispatcher)
+	
+	private fun BonjourService.toNsdService(): NsdService {
+		return NsdService(requireNotNull(hostname), port)
+	}
 	
 }

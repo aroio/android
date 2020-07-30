@@ -3,7 +3,7 @@ package de.lennartegb.nsd
 import android.net.nsd.NsdServiceInfo
 import java.net.InetAddress
 
-@Suppress("unused")
+@Suppress("unused", "MemberVisibilityCanBePrivate")
 class NsdInfo {
 	
 	private val serviceInfo = NsdServiceInfo()
@@ -20,8 +20,7 @@ class NsdInfo {
 	fun setHost(host: InetAddress) =
 		apply { serviceInfo.host = host }
 	
-	fun setHost(host: String) =
-		apply { serviceInfo.host = InetAddress.getByName(host) }
+	fun setHost(host: String) = setHost(InetAddress.getByName(host))
 	
 	fun setAttribute(key: String, value: String) =
 		apply { serviceInfo.setAttribute(key, value) }
