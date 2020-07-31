@@ -16,9 +16,9 @@ import de.abacuselectronics.aroiorc.ui.custom.divider.DividerFactory
 import de.abacuselectronics.aroiorc.ui.custom.divider.DividerType
 
 class OneLineSwitchView @JvmOverloads constructor(
-  context: Context,
-  attrs: AttributeSet? = null,
-  defStyle: Int = 0
+	context: Context,
+	attrs: AttributeSet? = null,
+	defStyle: Int = 0
 ) : ConstraintLayout(context, attrs, defStyle) {
 
   /**
@@ -147,5 +147,4 @@ class OneLineSwitchView @JvmOverloads constructor(
       connect(dividerId, BOTTOM, PARENT_ID, BOTTOM)
     }.applyTo(this)
   }
-
 }

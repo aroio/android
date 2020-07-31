@@ -38,4 +38,5 @@
   <string name="detail_system_overline_update">Update</string>
   <string name="detail_system_search_update">Suche Update</string>
   <string name="detail_system_beta_version_search">Nach Beta-Version suchen</string>
+	<string name="list_aroio_no_devices_available">No devices available in your network.</string>
 </resources>
