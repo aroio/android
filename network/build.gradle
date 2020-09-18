@@ -32,6 +32,15 @@ dependencies {
 	implementation rootProject.ext.commonDependencies.androidCoreImpl
 	implementation rootProject.ext.commonDependencies.appCompatImpl
 	
+	implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+	
+	implementation "com.squareup.okhttp3:okhttp:4.9.0"
+	
+	implementation "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.7.0"
+	
+	implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+	implementation "org.jetbrains.kotlinx:kotlinx-serialization-core:1.0.0-RC"
+	
 	testImplementation rootProject.ext.commonDependencies.jUnitTest
 	
 	androidTestImplementation rootProject.ext.commonDependencies.androidXAndroidTest
