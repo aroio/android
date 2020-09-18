@@ -8,5 +8,6 @@ data class Aroio(
 	@PrimaryKey(autoGenerate = true)
 	val id: Long,
 	val name: String,
-	val ipAddress: String
+	val ipAddress: String,
+	val isAvailable: Boolean
 )
