@@ -11,7 +11,6 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import de.abacuselectronics.aroiorc.R
 import de.abacuselectronics.aroiorc.ui.detail.DetailActivity
-import de.abacuselectronics.aroiorc.viewmodel.ViewModelFactory
 
 class LoginFragment : Fragment(R.layout.fragment_login) {
 	
@@ -21,7 +20,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 	private lateinit var progress: ProgressBar
 	
 	private val viewModel: LoginViewModel by viewModels {
-		ViewModelFactory(ipAddress = requireIpAddress())
+		LoginViewModelFactory(ipAddress = requireIpAddress())
 	}
 	
 	private val stateObserver = Observer<LoginViewModel.State> { state ->

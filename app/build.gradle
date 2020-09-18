@@ -3,13 +3,14 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-	compileSdkVersion 29
-	buildToolsVersion "29.0.2"
+	compileSdkVersion rootProject.ext.compileSdkVersion
+	buildToolsVersion rootProject.ext.buildToolsVersion
+	
 	
 	defaultConfig {
 		applicationId "de.abacuselectronics.aroiorc"
-		minSdkVersion 21
-		targetSdkVersion 29
+		minSdkVersion rootProject.ext.minSdkVersion
+		targetSdkVersion rootProject.ext.targetSdkVersion
 		versionCode 1
 		versionName "1.0"
 		
@@ -42,22 +43,23 @@ android {
 }
 
 dependencies {
+	implementation project(":core")
+	implementation project(":network")
+	implementation project(":database")
 	implementation project(":nsd")
 	
 	def cardview_version = "1.0.0"
-	def appcompat_version = "1.1.0"
-	def material_version = "1.1.0"
-	def constraint_version = "1.1.3"
+	def material_version = "1.2.1"
+	def constraint_version = "2.0.1"
 	def fragment_version = "1.2.5"
-	def core_version = "1.3.1"
 	def lifecycle_version = "2.2.0"
-	def junit_version = "4.13"
-	def espresso_version = "3.2.0"
+	def espresso_version = "3.3.0"
 	
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
-	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-	implementation "androidx.appcompat:appcompat:$appcompat_version"
-	implementation "androidx.core:core-ktx:$core_version"
+	implementation rootProject.ext.commonDependencies.kotlinStdLibImpl
+	implementation rootProject.ext.commonDependencies.androidCoreImpl
+	implementation rootProject.ext.commonDependencies.appCompatImpl
+	
 	implementation "androidx.constraintlayout:constraintlayout:$constraint_version"
 	implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
 	implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
@@ -65,8 +67,8 @@ dependencies {
 	implementation "androidx.cardview:cardview:$cardview_version"
 	implementation "com.google.android.material:material:$material_version"
 	
-	testImplementation "junit:junit:$junit_version"
+	testImplementation rootProject.ext.commonDependencies.jUnitTest
 	
-	androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+	androidTestImplementation rootProject.ext.commonDependencies.androidXAndroidTest
 	androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
 }

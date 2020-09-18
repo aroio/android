@@ -1,16 +1,12 @@
 package de.abacuselectronics.aroiorc.ui.login
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import de.abacuselectronics.aroiorc.datasource.remote.AroioRemoteService
-import de.abacuselectronics.aroiorc.datasource.remote.AuthResult
+import androidx.lifecycle.*
+import de.abacuselectronics.aroiorc.repository.AroioRepository
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 
 class LoginViewModel(
-	private val remoteService: AroioRemoteService
+	private val remoteService: AroioRepository
 ) : ViewModel() {
 	
 	sealed class State {
@@ -40,12 +36,16 @@ class LoginViewModel(
 			)
 		}
 		
-		return when (remoteService.authenticate(username, password)) {
-			is AuthResult.Success -> State.Success
-			is AuthResult.Failure -> State.Fail(
-				FailReason.AuthenticationFailed
-			)
-		}
+		remoteService.authenticate(username, password)
+		return State.Success
 	}
-	
+}
+
+@Suppress("UNCHECKED_CAST")
+class LoginViewModelFactory(
+	private val ipAddress: String
+) : ViewModelProvider.Factory {
+	override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+		TODO("Implement")
+	}
 }
