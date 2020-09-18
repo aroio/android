@@ -26,8 +26,8 @@ android {
 
 dependencies {
 	implementation project(":core")
-	implementation fileTree(dir: "libs", include: ["*.jar"])
 	
+	implementation fileTree(dir: "libs", include: ["*.jar"])
 	implementation rootProject.ext.commonDependencies.kotlinStdLibImpl
 	implementation rootProject.ext.commonDependencies.androidCoreImpl
 	implementation rootProject.ext.commonDependencies.appCompatImpl
@@ -36,7 +36,4 @@ dependencies {
 	
 	androidTestImplementation rootProject.ext.commonDependencies.androidXAndroidTest
 	
-	implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9"
-	
-	implementation "com.github.andriydruk:rx2dnssd:0.9.13"
 }

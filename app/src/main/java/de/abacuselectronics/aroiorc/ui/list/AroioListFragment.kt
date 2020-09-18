@@ -7,8 +7,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import de.abacuselectronics.aroiorc.R
 import de.abacuselectronics.aroiorc.databinding.FragmentAroioListBinding
-import de.abacuselectronics.aroiorc.datasource.local.Aroio
-import de.abacuselectronics.aroiorc.viewmodel.ViewModelFactory
+import de.abacuselectronics.aroiorc.viewmodel.AroioListViewModel
+import de.abacuselectronics.aroiorc.viewmodel.AroioListViewModelFactory
 
 class AroioListFragment : Fragment(R.layout.fragment_aroio_list) {
 	
@@ -22,7 +22,7 @@ class AroioListFragment : Fragment(R.layout.fragment_aroio_list) {
 	}
 	
 	private val viewModel: AroioListViewModel by viewModels {
-		ViewModelFactory(requireContext())
+		AroioListViewModelFactory(requireContext())
 	}
 	private val stateObserver = Observer<AroioListViewModel.State> { state ->
 		when (state) {
@@ -43,7 +43,7 @@ class AroioListFragment : Fragment(R.layout.fragment_aroio_list) {
 		viewModel.state.observe(viewLifecycleOwner, stateObserver)
 	}
 	
-	private fun displayFoundDevices(aroioList: List<Aroio>) {
+	private fun displayFoundDevices(aroioList: List<de.abacus.aroio.database.entities.Aroio>) {
 		binding.recycler.visibility = View.VISIBLE
 		binding.fallbackView.visibility = View.GONE
 		adapter.setAroioList(aroioList)
