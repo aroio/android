@@ -1,18 +1,20 @@
 package de.abacuselectronics.aroiorc.ui.login
 
 import androidx.lifecycle.*
-import de.abacuselectronics.aroiorc.repository.AroioRepository
+import de.abacus.aroio.network.service.AuthenticationService
+import de.abacuselectronics.aroiorc.repository.AuthRepository
+import de.abacuselectronics.aroiorc.repository.AuthRepositoryImpl
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 
 class LoginViewModel(
-	private val remoteService: AroioRepository
+	private val authRepository: AuthRepository
 ) : ViewModel() {
 	
 	sealed class State {
 		object Loading : State()
 		object Success : State()
-		class Fail(val reason: FailReason) : State()
+		data class Failure(val reason: FailReason) : State()
 	}
 	
 	sealed class FailReason {
@@ -31,12 +33,10 @@ class LoginViewModel(
 	
 	private suspend fun tryLogin(username: String, password: String): State {
 		if (username.isBlank() or password.isBlank()) {
-			return State.Fail(
-				FailReason.InvalidInput
-			)
+			return State.Failure(FailReason.InvalidInput)
 		}
-		
-		remoteService.authenticate(username, password)
+		authRepository.authenticate(username, password)
+		// TODO: 18.09.20 - make real authentication
 		return State.Success
 	}
 }
@@ -45,7 +45,10 @@ class LoginViewModel(
 class LoginViewModelFactory(
 	private val ipAddress: String
 ) : ViewModelProvider.Factory {
+	
 	override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-		TODO("Implement")
+		val service = AuthenticationService.get(ipAddress)
+		val repo = AuthRepositoryImpl(service)
+		return LoginViewModel(repo) as T
 	}
 }
