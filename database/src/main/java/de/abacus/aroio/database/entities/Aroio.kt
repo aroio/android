@@ -1,3 +1,12 @@
 package de.abacus.aroio.database.entities
 
-data class Aroio(val name: String, val ipAddress: String)
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity
+data class Aroio(
+	@PrimaryKey(autoGenerate = true)
+	val id: Long,
+	val name: String,
+	val ipAddress: String
+)
