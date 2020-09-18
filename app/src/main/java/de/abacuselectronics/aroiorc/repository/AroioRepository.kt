@@ -1,5 +1,7 @@
 package de.abacuselectronics.aroiorc.repository
 
+import de.abacus.aroio.database.entities.Aroio
+
 interface AroioRepository {
-	suspend fun authenticate(username: String, password: String)
+	suspend fun getAllAvailable(): List<Aroio>
 }

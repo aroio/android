@@ -32,6 +32,11 @@ dependencies {
 	implementation rootProject.ext.commonDependencies.androidCoreImpl
 	implementation rootProject.ext.commonDependencies.appCompatImpl
 	
+	// Room
+	def room_version = "2.2.5"
+	implementation "androidx.room:room-runtime:$room_version"
+	annotationProcessor "androidx.room:room-compiler:$room_version"
+	
 	testImplementation rootProject.ext.commonDependencies.jUnitTest
 	
 	androidTestImplementation rootProject.ext.commonDependencies.androidXAndroidTest

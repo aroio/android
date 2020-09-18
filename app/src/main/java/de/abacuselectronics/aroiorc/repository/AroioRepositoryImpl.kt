@@ -1,6 +1,7 @@
 package de.abacuselectronics.aroiorc.repository
 
 import de.abacus.aroio.database.daos.AroioDao
+import de.abacus.aroio.database.entities.Aroio
 import de.abacus.aroio.network.service.AroioService
 
 class AroioRepositoryImpl(
@@ -8,8 +9,9 @@ class AroioRepositoryImpl(
 	private val dao: AroioDao
 ) : AroioRepository {
 	
-	override suspend fun authenticate(username: String, password: String) {
-		service.authenticate(username, password)
+	override suspend fun getAllAvailable(): List<Aroio> {
+		// TODO: 18.09.20 - run nsd for accessing available aroios
+		return dao.getAvailable()
 	}
 	
 }
