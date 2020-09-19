@@ -1,10 +1,10 @@
 package de.abacus.aroio.network.service
 
 import de.abacus.aroio.network.Client
-import de.abacus.aroio.network.Token
+import de.abacus.aroio.network.entities.BackendToken
 
 interface AuthenticationService {
-	suspend fun login(username: String, password: String): Token
+	suspend fun login(username: String, password: String): BackendToken
 	
 	companion object {
 		
