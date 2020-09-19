@@ -2,6 +2,7 @@ package de.abacuselectronics.aroiorc.viewmodel
 
 import android.content.Context
 import androidx.lifecycle.*
+import de.abacus.aroio.database.entities.Aroio
 import de.lennartegb.nsd.NetworkServiceDiscovery
 import de.lennartegb.nsd.extensions.getNetworkServiceDiscovery
 import de.lennartegb.nsd.model.NsdResult
@@ -17,12 +18,11 @@ class AroioListViewModel(
 	
 	sealed class State {
 		object NoDevicesFound : State()
-		class DevicesAvailable(val aroioList: List<de.abacus.aroio.database.entities.Aroio>) :
-			State()
+		class DevicesAvailable(val aroioList: List<Aroio>) : State()
 	}
 	
 	private val aroioList =
-		MutableLiveData<List<de.abacus.aroio.database.entities.Aroio>>(emptyList())
+		MutableLiveData<List<Aroio>>(emptyList())
 	
 	val state: LiveData<State> = Transformations.map(aroioList) {
 		return@map if (it.isEmpty()) State.NoDevicesFound
@@ -42,7 +42,7 @@ class AroioListViewModel(
 	
 	private fun serviceLost(service: NsdService) {
 		val list = aroioList.value ?: return
-		val aroio: de.abacus.aroio.database.entities.Aroio =
+		val aroio: Aroio =
 			getAroioFromService(service)
 		aroioList.postValue(list.filter { it != aroio })
 	}
@@ -53,10 +53,12 @@ class AroioListViewModel(
 		aroioList.postValue(list.plus(aroio))
 	}
 	
-	private fun getAroioFromService(service: NsdService): de.abacus.aroio.database.entities.Aroio {
-		return de.abacus.aroio.database.entities.Aroio(
+	private fun getAroioFromService(service: NsdService): Aroio {
+		return Aroio(
+			id = 1L,
 			name = service.host.hostName,
-			ipAddress = service.host.hostAddress
+			ipAddress = service.host.hostAddress,
+			isAvailable = true
 		)
 	}
 	
