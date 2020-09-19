@@ -13,7 +13,9 @@ object Client {
 	private var baseUrl: String? = null
 	
 	internal fun getRetrofit(aroioIpAddress: String): Retrofit {
-		if (this.baseUrl == aroioIpAddress) return requireNotNull(retrofit)
+		if (this.baseUrl == aroioIpAddress) return requireNotNull(retrofit) {
+			"If the baseUrl is equal to the given address, a Retrofit instance must be created already."
+		}
 		this.baseUrl = aroioIpAddress
 		return createRetrofit(aroioIpAddress)
 	}
