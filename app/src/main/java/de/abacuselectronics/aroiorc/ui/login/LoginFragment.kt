@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
+import de.abacus.aroio.network.OAuthTokenProvider
 import de.abacuselectronics.aroiorc.R
 import de.abacuselectronics.aroiorc.ui.detail.DetailActivity
 
@@ -20,7 +21,11 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 	private lateinit var progress: ProgressBar
 	
 	private val viewModel: LoginViewModel by viewModels {
-		LoginViewModelFactory(ipAddress = requireIpAddress())
+		val tokenProvider = OAuthTokenProvider.create(requireContext())
+		LoginViewModelFactory(
+			oAuthTokenProvider = tokenProvider,
+			ipAddress = requireIpAddress()
+		)
 	}
 	
 	private val stateObserver = Observer<LoginViewModel.State> { state ->
@@ -29,13 +34,13 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 		when (state) {
 			LoginViewModel.State.Loading -> showLoading()
 			LoginViewModel.State.Success -> loggedInSuccessfully()
-			is LoginViewModel.State.Fail -> showError(state.reason)
+			is LoginViewModel.State.Failure -> showError(state.reason)
 		}
 	}
 	
 	private fun showError(reason: LoginViewModel.FailReason) {
 		val message = when (reason) {
-			LoginViewModel.FailReason.InvalidInput         -> "Invalid input text"
+			LoginViewModel.FailReason.InvalidInput -> "Invalid input text"
 			LoginViewModel.FailReason.AuthenticationFailed -> "Wrong username or password"
 		}
 		Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()

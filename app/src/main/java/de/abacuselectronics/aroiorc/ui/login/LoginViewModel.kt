@@ -1,6 +1,7 @@
 package de.abacuselectronics.aroiorc.ui.login
 
 import androidx.lifecycle.*
+import de.abacus.aroio.network.OAuthTokenProvider
 import de.abacus.aroio.network.service.AuthenticationService
 import de.abacuselectronics.aroiorc.repository.AuthRepository
 import de.abacuselectronics.aroiorc.repository.AuthRepositoryImpl
@@ -36,19 +37,19 @@ class LoginViewModel(
 			return State.Failure(FailReason.InvalidInput)
 		}
 		authRepository.authenticate(username, password)
-		// TODO: 18.09.20 - make real authentication
 		return State.Success
 	}
 }
 
 @Suppress("UNCHECKED_CAST")
 class LoginViewModelFactory(
+	private val oAuthTokenProvider: OAuthTokenProvider,
 	private val ipAddress: String
 ) : ViewModelProvider.Factory {
 	
 	override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-		val service = AuthenticationService.get(ipAddress)
-		val repo = AuthRepositoryImpl(service)
+		val service = AuthenticationService.get(oAuthTokenProvider, ipAddress)
+		val repo = AuthRepositoryImpl(oAuthTokenProvider, service)
 		return LoginViewModel(repo) as T
 	}
 }
