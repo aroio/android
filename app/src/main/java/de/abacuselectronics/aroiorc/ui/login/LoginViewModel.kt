@@ -1,7 +1,7 @@
 package de.abacuselectronics.aroiorc.ui.login
 
 import androidx.lifecycle.*
-import de.abacus.aroio.network.OAuthTokenProvider
+import de.abacus.aroio.network.auth.OAuthTokenProvider
 import de.abacus.aroio.network.service.AuthenticationService
 import de.abacuselectronics.aroiorc.repository.AuthRepository
 import de.abacuselectronics.aroiorc.repository.AuthRepositoryImpl

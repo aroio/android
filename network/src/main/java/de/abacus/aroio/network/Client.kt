@@ -1,6 +1,7 @@
 package de.abacus.aroio.network
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import de.abacus.aroio.network.auth.OAuthTokenProvider
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType

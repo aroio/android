@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
-import de.abacus.aroio.network.OAuthTokenProvider
+import de.abacus.aroio.network.auth.OAuthTokenProvider
 import de.abacuselectronics.aroiorc.R
 import de.abacuselectronics.aroiorc.ui.detail.DetailActivity
 

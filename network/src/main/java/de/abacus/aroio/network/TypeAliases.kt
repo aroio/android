@@ -1,3 +1,4 @@
 package de.abacus.aroio.network
 
-typealias Token = String
+typealias AccessToken = String
+typealias TokenType = String

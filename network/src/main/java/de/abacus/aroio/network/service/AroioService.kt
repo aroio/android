@@ -1,7 +1,7 @@
 package de.abacus.aroio.network.service
 
 import de.abacus.aroio.network.Client
-import de.abacus.aroio.network.OAuthTokenProvider
+import de.abacus.aroio.network.auth.OAuthTokenProvider
 import de.abacus.aroio.network.entities.BackendAroio
 import retrofit2.http.GET
 
