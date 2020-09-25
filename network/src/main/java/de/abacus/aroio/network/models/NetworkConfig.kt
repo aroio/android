@@ -1,10 +1,10 @@
-package de.abacus.aroio.network.entities
+package de.abacus.aroio.network.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class BackendNetwork(
+data class NetworkConfig(
 	@SerialName("hostname")
 	val hostname: String,
 	@SerialName("wifi")

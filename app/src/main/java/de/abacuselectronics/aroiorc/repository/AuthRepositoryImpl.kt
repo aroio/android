@@ -1,7 +1,7 @@
 package de.abacuselectronics.aroiorc.repository
 
 import de.abacus.aroio.network.auth.OAuthTokenProvider
-import de.abacus.aroio.network.entities.ChangePasswordInput
+import de.abacus.aroio.network.models.ChangePasswordInput
 import de.abacus.aroio.network.service.AuthenticationService
 
 class AuthRepositoryImpl(

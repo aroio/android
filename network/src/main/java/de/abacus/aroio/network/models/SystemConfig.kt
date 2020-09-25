@@ -1,10 +1,10 @@
-package de.abacus.aroio.network.entities
+package de.abacus.aroio.network.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class BackendSystem(
+data class SystemConfig(
 	@SerialName("updateserver")
 	val updateServer: String,
 	@SerialName("usebeta")

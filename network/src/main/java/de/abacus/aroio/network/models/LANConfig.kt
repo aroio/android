@@ -1,10 +1,10 @@
-package de.abacus.aroio.network.entities
+package de.abacus.aroio.network.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class WLANConfig(
+data class LANConfig(
 	@SerialName("dhcp")
 	val dhcp: Boolean,
 	@SerialName("ipaddr")
@@ -15,8 +15,4 @@ data class WLANConfig(
 	val dnsserv: String?,
 	@SerialName("gateway")
 	val gateway: String?,
-	@SerialName("ssid")
-	val ssid: String?,
-	@SerialName("pwd")
-	val pwd: String?,
 )

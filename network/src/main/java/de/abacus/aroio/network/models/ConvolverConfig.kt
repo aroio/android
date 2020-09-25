@@ -1,10 +1,10 @@
-package de.abacus.aroio.network.entities
+package de.abacus.aroio.network.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class BackendConvolver(
+data class ConvolverConfig(
 	@SerialName("debug")
 	val isDebug: Boolean,
 	@SerialName("load_prefilter")
@@ -14,5 +14,5 @@ data class BackendConvolver(
 	@SerialName("def_coeff")
 	val defCoeff: Int?,
 	@SerialName("filters")
-	val filters: List<BackendConvolverFilter>,
+	val filters: List<ConvolverFilter>,
 )

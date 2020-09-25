@@ -1,10 +1,10 @@
-package de.abacus.aroio.network.entities
+package de.abacus.aroio.network.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class BackendAudio(
+data class AudioConfig(
 	@SerialName("audioplayer")
 	val audioPlayer: String?,
 	@SerialName("channels")
@@ -44,5 +44,5 @@ data class BackendAudio(
 	@SerialName("bf_partitions")
 	val bfPartitions: Int,
 	@SerialName("output_configuration")
-	val outputConfiguration: BackendOutputConfiguration,
+	val outputConfig: OutputConfig,
 )

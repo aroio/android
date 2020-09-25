@@ -1,10 +1,10 @@
-package de.abacus.aroio.network.entities
+package de.abacus.aroio.network.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class BackendAroio(
+data class Aroio(
 	@SerialName("name")
 	val name: String,
 	@SerialName("description")
@@ -12,5 +12,5 @@ data class BackendAroio(
 	@SerialName("timestamp")
 	val timestamp: Float,
 	@SerialName("configuration")
-	val configuration: BackendConfiguration,
+	val configurationContainer: ConfigurationContainer,
 )

@@ -2,13 +2,13 @@ package de.abacus.aroio.network.service
 
 import de.abacus.aroio.network.Client
 import de.abacus.aroio.network.auth.OAuthTokenProvider
-import de.abacus.aroio.network.entities.BackendAroio
+import de.abacus.aroio.network.models.Aroio
 import retrofit2.http.GET
 
 interface AroioService {
 	
 	@GET("aroio")
-	suspend fun getAroio(): BackendAroio
+	suspend fun getAroio(): Aroio
 	
 	companion object {
 		fun get(

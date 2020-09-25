@@ -1,18 +1,18 @@
-package de.abacus.aroio.network.entities
+package de.abacus.aroio.network.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class BackendOutputConfiguration(
+data class OutputConfig(
 	@SerialName("audio_output")
 	val audioOutput: String,
 	@SerialName("rate")
 	val rate: Int,
 	@SerialName("direct_config")
-	val directConfig: BackendPlayerConfiguration,
+	val directConfig: PlayerConfig,
 	@SerialName("bus_config")
-	val busConfig: BackendPlayerConfiguration,
+	val busConfig: PlayerConfig,
 	@SerialName("convolver_config")
-	val convolverConfig: BackendPlayerConfiguration,
+	val convolverConfig: PlayerConfig,
 )
