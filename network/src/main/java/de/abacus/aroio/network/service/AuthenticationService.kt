@@ -4,7 +4,7 @@ import de.abacus.aroio.network.Client
 import de.abacus.aroio.network.auth.OAuthTokenProvider
 import de.abacus.aroio.network.auth.AuthCredentials
 import de.abacus.aroio.network.auth.Token
-import de.abacus.aroio.network.entities.ChangePasswordInput
+import de.abacus.aroio.network.models.ChangePasswordInput
 import retrofit2.http.Body
 import retrofit2.http.PATCH
 import retrofit2.http.POST
