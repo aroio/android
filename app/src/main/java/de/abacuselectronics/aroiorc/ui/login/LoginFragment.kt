@@ -20,13 +20,13 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 	private lateinit var button: MaterialButton
 	private lateinit var progress: ProgressBar
 	
-	private val viewModel: LoginViewModel by viewModels {
-		val tokenProvider = OAuthTokenProvider.create(requireContext())
-		LoginViewModelFactory(
-			oAuthTokenProvider = tokenProvider,
-			ipAddress = requireIpAddress()
-		)
-	}
+//	private val viewModel: LoginViewModel by viewModels {
+//		val tokenProvider = OAuthTokenProvider.create(requireContext())
+//		LoginViewModelFactory(
+//			oAuthTokenProvider = tokenProvider,
+//			ipAddress = requireIpAddress()
+//		)
+//	}
 	
 	private val stateObserver = Observer<LoginViewModel.State> { state ->
 		if (state != LoginViewModel.State.Loading) hideLoading()
@@ -73,10 +73,10 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 		progress = view.findViewById(R.id.progress)
 		button = view.findViewById(R.id.login_button)
 		button.setOnClickListener {
-			viewModel.login(
-				username = usernameTextView.text.toString(),
-				password = passwordTextView.text.toString()
-			)
+//			viewModel.login(
+//				username = usernameTextView.text.toString(),
+//				password = passwordTextView.text.toString()
+//			)
 		}
 		
 		view.findViewById<MaterialButton>(R.id.cancel_button)
@@ -85,7 +85,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 	
 	override fun onResume() {
 		super.onResume()
-		viewModel.state.observe(viewLifecycleOwner, stateObserver)
+//		viewModel.state.observe(viewLifecycleOwner, stateObserver)
 	}
 	
 	private fun requireIpAddress() =

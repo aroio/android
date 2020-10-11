@@ -17,6 +17,11 @@ import kotlinx.coroutines.launch
 
 internal class NetworkServiceDiscoveryImpl(context: Context) :
 	NetworkServiceDiscovery {
+
+	companion object {
+		private val TAG: String
+			get() = NetworkServiceDiscoveryImpl::class.java.simpleName
+	}
 	
 	private val dnssd = Rx2DnssdEmbedded(context)
 	private val dispatcher = IO
@@ -28,10 +33,7 @@ internal class NetworkServiceDiscoveryImpl(context: Context) :
 			.compose(dnssd.resolve())
 			.subscribeOn(Schedulers.io())
 			.subscribe { service ->
-				Log.i(
-					this@NetworkServiceDiscoveryImpl.javaClass.simpleName,
-					service.toString()
-				)
+				Log.i(TAG, service.toString())
 				val result = service?.toNsdService() ?: return@subscribe
 				if (service.isLost) {
 					coroutineScope.launch { emit(NsdResult.ServiceLost(result)) }

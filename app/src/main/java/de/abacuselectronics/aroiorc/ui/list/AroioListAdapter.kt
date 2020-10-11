@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import de.abacuselectronics.aroiorc.R
 import de.abacus.aroio.database.entities.Aroio
 
-class AroioListAdapter(private val onClick: (de.abacus.aroio.database.entities.Aroio) -> Unit) :
+class AroioListAdapter(private val onClick: (Aroio) -> Unit) :
 	RecyclerView.Adapter<AroioListAdapter.Holder>() {
 	
-	private var aroioListItems = listOf<de.abacus.aroio.database.entities.Aroio>()
+	private var aroioListItems = listOf<Aroio>()
 	
 	override fun onCreateViewHolder(
 		parent: ViewGroup,
@@ -28,7 +28,7 @@ class AroioListAdapter(private val onClick: (de.abacus.aroio.database.entities.A
 		holder.bind(aroioListItems[position], onClick)
 	}
 	
-	fun setAroioList(aroioList: List<de.abacus.aroio.database.entities.Aroio>) {
+	fun setAroioList(aroioList: List<Aroio>) {
 		aroioListItems = aroioList
 		notifyDataSetChanged()
 	}
@@ -39,9 +39,8 @@ class AroioListAdapter(private val onClick: (de.abacus.aroio.database.entities.A
 		private val ipAddress: AppCompatTextView =
 			itemView.findViewById(R.id.aroio_list_ip_address)
 		
-		fun bind(aroio: de.abacus.aroio.database.entities.Aroio, onClick: (de.abacus.aroio.database.entities.Aroio) -> Unit) {
+		fun bind(aroio: Aroio, onClick: (Aroio) -> Unit) {
 			name.text = aroio.name
-			ipAddress.text = aroio.ipAddress
 			itemView.setOnClickListener { onClick(aroio) }
 		}
 	}

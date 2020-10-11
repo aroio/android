@@ -18,7 +18,7 @@ class AroioListFragment : Fragment(R.layout.fragment_aroio_list) {
 	
 	private lateinit var binding: FragmentAroioListBinding
 	private val adapter = AroioListAdapter {
-		listener?.onListAroioClicked(it.ipAddress)
+		TODO("Aroio was tapped, and notify listener")
 	}
 	
 	private val viewModel: AroioListViewModel by viewModels {

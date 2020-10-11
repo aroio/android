@@ -1,5 +1,6 @@
 package de.abacuselectronics.aroiorc.repository
 
+import de.abacus.aroio.network.auth.AuthCredentials
 import de.abacus.aroio.network.auth.OAuthTokenProvider
 import de.abacus.aroio.network.models.ChangePasswordInput
 import de.abacus.aroio.network.service.AuthenticationService
@@ -10,8 +11,9 @@ class AuthRepositoryImpl(
 ) : AuthRepository {
 	
 	override suspend fun authenticate(username: String, password: String) {
-		val token = service.login(username, password)
-		oAuthTokenProvider.setToken(token = token.accessToken)
+		val credentials = AuthCredentials(username, password)
+		val token = service.login(credentials)
+		oAuthTokenProvider.setToken(token = token)
 	}
 	
 	override suspend fun changePassword(

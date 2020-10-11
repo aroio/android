@@ -54,12 +54,13 @@ class AroioListViewModel(
 	}
 	
 	private fun getAroioFromService(service: NsdService): Aroio {
-		return Aroio(
-			id = 1L,
-			name = service.host.hostName,
-			ipAddress = service.host.hostAddress,
-			isAvailable = true
-		)
+//		return Aroio(
+//			id = 1L,
+//			name = service.host.hostName,
+//			ipAddress = service.host.hostAddress,
+//			isAvailable = true
+//		)
+		TODO("Use $service")
 	}
 	
 }
