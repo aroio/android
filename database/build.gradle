@@ -1,14 +1,13 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 
 android {
-	compileSdkVersion rootProject.ext.compileSdkVersion
-	buildToolsVersion rootProject.ext.buildToolsVersion
+	compileSdkVersion 30
+	buildToolsVersion '30.0.2'
 	
 	defaultConfig {
-		minSdkVersion rootProject.ext.minSdkVersion
-		targetSdkVersion rootProject.ext.targetSdkVersion
+		minSdkVersion 21
+		targetSdkVersion 30
 		versionCode 1
 		versionName "1.0"
 		
@@ -28,17 +27,15 @@ dependencies {
 	implementation project(":core")
 	
 	implementation fileTree(dir: "libs", include: ["*.jar"])
-	implementation rootProject.ext.commonDependencies.kotlinStdLibImpl
-	implementation rootProject.ext.commonDependencies.androidCoreImpl
-	implementation rootProject.ext.commonDependencies.appCompatImpl
+	implementation "org.jetbrains.kotlin:kotlin-stdlib:1.4.21"
+	implementation "androidx.appcompat:appcompat:1.2.0"
 	
 	// Room
-	def room_version = "2.2.5"
-	implementation "androidx.room:room-runtime:$room_version"
-	annotationProcessor "androidx.room:room-compiler:$room_version"
+	implementation "androidx.room:room-runtime:2.2.6"
+	annotationProcessor "androidx.room:room-compiler:2.2.6"
 	
-	testImplementation rootProject.ext.commonDependencies.jUnitTest
+	testImplementation "junit:junit:4.13.1"
 	
-	androidTestImplementation rootProject.ext.commonDependencies.androidXAndroidTest
+	androidTestImplementation "androidx.test.ext:junit:1.1.2"
 	
 }

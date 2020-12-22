@@ -1,15 +1,14 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlinx-serialization'
 
 android {
-	compileSdkVersion rootProject.ext.compileSdkVersion
-	buildToolsVersion rootProject.ext.buildToolsVersion
+	compileSdkVersion 30
+	buildToolsVersion '30.0.2'
 	
 	defaultConfig {
-		minSdkVersion rootProject.ext.minSdkVersion
-		targetSdkVersion rootProject.ext.targetSdkVersion
+		minSdkVersion 21
+		targetSdkVersion 30
 		versionCode 1
 		versionName "1.0"
 		
@@ -29,9 +28,8 @@ dependencies {
 	implementation project(":core")
 	
 	implementation fileTree(dir: "libs", include: ["*.jar"])
-	implementation rootProject.ext.commonDependencies.kotlinStdLibImpl
-	implementation rootProject.ext.commonDependencies.androidCoreImpl
-	implementation rootProject.ext.commonDependencies.appCompatImpl
+	implementation "org.jetbrains.kotlin:kotlin-stdlib:1.4.21"
+	implementation "androidx.appcompat:appcompat:1.2.0"
 	
 	implementation 'com.squareup.retrofit2:retrofit:2.9.0'
 	
@@ -39,10 +37,10 @@ dependencies {
 	
 	implementation "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.7.0"
 	
-	implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+	implementation "org.jetbrains.kotlin:kotlin-stdlib:1.4.21"
 	implementation "org.jetbrains.kotlinx:kotlinx-serialization-core:1.0.0-RC"
 	
-	testImplementation rootProject.ext.commonDependencies.jUnitTest
+	testImplementation "junit:junit:4.13.1"
 	
-	androidTestImplementation rootProject.ext.commonDependencies.androidXAndroidTest
+	androidTestImplementation "androidx.test.ext:junit:1.1.2"
 }

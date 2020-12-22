@@ -1,16 +1,15 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 
 android {
-	compileSdkVersion rootProject.ext.compileSdkVersion
-	buildToolsVersion rootProject.ext.buildToolsVersion
+	compileSdkVersion 30
+	buildToolsVersion '30.0.2'
 	
 	
 	defaultConfig {
 		applicationId "de.abacuselectronics.aroiorc"
-		minSdkVersion rootProject.ext.minSdkVersion
-		targetSdkVersion rootProject.ext.targetSdkVersion
+		minSdkVersion 21
+		targetSdkVersion 30
 		versionCode 1
 		versionName "1.0"
 		
@@ -25,9 +24,7 @@ android {
 	}
 	
 	buildFeatures {
-		viewBinding {
-			enabled true
-		}
+		viewBinding true
 	}
 }
 
@@ -39,25 +36,23 @@ dependencies {
 	
 	def cardview_version = "1.0.0"
 	def material_version = "1.2.1"
-	def constraint_version = "2.0.1"
 	def fragment_version = "1.2.5"
 	def lifecycle_version = "2.2.0"
 	def espresso_version = "3.3.0"
 	
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
-	implementation rootProject.ext.commonDependencies.kotlinStdLibImpl
-	implementation rootProject.ext.commonDependencies.androidCoreImpl
-	implementation rootProject.ext.commonDependencies.appCompatImpl
+	implementation "org.jetbrains.kotlin:kotlin-stdlib:1.4.21"
+	implementation "androidx.appcompat:appcompat:1.2.0"
 	
-	implementation "androidx.constraintlayout:constraintlayout:$constraint_version"
+	implementation "androidx.constraintlayout:constraintlayout:2.0.4"
 	implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
 	implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
 	implementation "androidx.fragment:fragment-ktx:$fragment_version"
 	implementation "androidx.cardview:cardview:$cardview_version"
 	implementation "com.google.android.material:material:$material_version"
 	
-	testImplementation rootProject.ext.commonDependencies.jUnitTest
+	testImplementation "junit:junit:4.13.1"
 	
-	androidTestImplementation rootProject.ext.commonDependencies.androidXAndroidTest
+	androidTestImplementation "androidx.test.ext:junit:1.1.2"
 	androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
 }
