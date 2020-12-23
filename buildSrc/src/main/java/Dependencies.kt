@@ -12,6 +12,7 @@ object Dependencies {
 
 	object InstTest {
 		const val android = "androidx.test.ext:junit:${Version.InstTest.android}"
+		const val espresso = "androidx.test.espresso:espresso-core:${Version.InstTest.espresso}"
 	}
 
 }

@@ -10,6 +10,7 @@ object Version {
 	}
 
 	object InstTest {
+		const val espresso = "3.3.0"
 		const val android = "1.1.2"
 	}
 
