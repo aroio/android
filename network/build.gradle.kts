@@ -30,19 +30,14 @@ dependencies {
 	implementation(project(":core"))
 	
 	implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-	implementation("org.jetbrains.kotlin:kotlin-stdlib:1.4.21")
-	implementation("androidx.appcompat:appcompat:1.2.0")
-	
-	implementation("com.squareup.retrofit2:retrofit:2.9.0")
-	
-	implementation("com.squareup.okhttp3:okhttp:4.9.0")
-	
-	implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.7.0")
-	
-	implementation("org.jetbrains.kotlin:kotlin-stdlib:1.4.21")
-	implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.0.0-RC")
-	
-	testImplementation("junit:junit:4.13.1")
-	
-	androidTestImplementation("androidx.test.ext:junit:1.1.2")
+	implementation(Dependencies.Kotlin.std)
+	implementation(Dependencies.Kotlin.serialization)
+
+	implementation(dependencyNotation = "com.squareup.retrofit2:retrofit:2.9.0")
+	implementation(dependencyNotation = "com.squareup.okhttp3:okhttp:4.9.0")
+	implementation(dependencyNotation = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.7.0")
+
+	testImplementation(Dependencies.Test.junit5)
+	testImplementation(Dependencies.Test.kotlin)
+	androidTestImplementation(Dependencies.InstTest.android)
 }
