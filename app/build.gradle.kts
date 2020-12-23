@@ -8,7 +8,6 @@ android {
 	compileSdkVersion(30)
 	buildToolsVersion("30.0.2")
 	
-	
 	defaultConfig {
 		applicationId("de.abacuselectronics.aroiorc")
 		minSdkVersion(21)
