@@ -25,6 +25,7 @@ android {
 		}
 	}
 	
+	@Suppress("UnstableApiUsage")
 	buildFeatures {
 		viewBinding = true
 	}
