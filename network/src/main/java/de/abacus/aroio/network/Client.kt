@@ -3,18 +3,17 @@ package de.abacus.aroio.network
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import de.abacus.aroio.network.auth.OAuthTokenProvider
 import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 
-object Client {
+internal object Client {
 	
 	@Volatile
 	private var retrofit: Retrofit? = null
 	private var baseUrl: String? = null
 	
-	internal fun getRetrofit(
+	fun getRetrofit(
 		tokenProvider: OAuthTokenProvider,
 		aroioIpAddress: String
 	): Retrofit {
@@ -30,8 +29,6 @@ object Client {
 		oauthTokenProvider: OAuthTokenProvider,
 		baseUrl: String
 	): Retrofit {
-		val contentType = "application/json".toMediaType()
-		
 		val interceptor = AuthInterceptor(oauthTokenProvider)
 		val okHttpClient = OkHttpClient.Builder()
 			.addInterceptor(interceptor = interceptor)
@@ -40,7 +37,7 @@ object Client {
 		return Retrofit.Builder()
 			.client(okHttpClient)
 			.baseUrl(baseUrl)
-			.addConverterFactory(Json.asConverterFactory(contentType = contentType))
+			.addConverterFactory(JsonConfig.asConverterFactory(contentType = "application/json".toMediaType()))
 			.build()
 	}
 	
