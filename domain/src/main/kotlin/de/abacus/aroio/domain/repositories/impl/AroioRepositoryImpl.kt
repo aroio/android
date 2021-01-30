@@ -1,7 +1,8 @@
-package de.abacuselectronics.aroiorc.repository
+package de.abacus.aroio.domain.repositories.impl
 
 import de.abacus.aroio.database.daos.AroioDao
 import de.abacus.aroio.database.entities.Aroio
+import de.abacus.aroio.domain.repositories.AroioRepository
 import de.abacus.aroio.network.service.AroioService
 
 class AroioRepositoryImpl(

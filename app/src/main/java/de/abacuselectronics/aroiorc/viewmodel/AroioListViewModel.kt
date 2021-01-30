@@ -2,7 +2,7 @@ package de.abacuselectronics.aroiorc.viewmodel
 
 import android.content.Context
 import androidx.lifecycle.*
-import de.abacus.aroio.database.entities.Aroio
+import de.abacus.aroio.domain.models.Aroio
 import de.lennartegb.nsd.NetworkServiceDiscovery
 import de.lennartegb.nsd.extensions.getNetworkServiceDiscovery
 import de.lennartegb.nsd.model.NsdResult
@@ -11,7 +11,6 @@ import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-@OptIn(InternalCoroutinesApi::class)
 class AroioListViewModel(
 	private val networkServiceDiscovery: NetworkServiceDiscovery
 ) : ViewModel() {
@@ -54,12 +53,6 @@ class AroioListViewModel(
 	}
 	
 	private fun getAroioFromService(service: NsdService): Aroio {
-//		return Aroio(
-//			id = 1L,
-//			name = service.host.hostName,
-//			ipAddress = service.host.hostAddress,
-//			isAvailable = true
-//		)
 		TODO("Use $service")
 	}
 	

@@ -1,4 +1,4 @@
-package de.abacuselectronics.aroiorc.repository
+package de.abacus.aroio.domain.repositories
 
 interface AuthRepository {
 	suspend fun authenticate(username: String, password: String)

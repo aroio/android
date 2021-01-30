@@ -1,4 +1,4 @@
-package de.abacuselectronics.aroiorc.repository
+package de.abacus.aroio.domain.repositories
 
 import de.abacus.aroio.database.entities.Aroio
 

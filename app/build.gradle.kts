@@ -44,9 +44,8 @@ android {
 
 dependencies {
 	implementation(project(":core"))
-	implementation(project(":network"))
-	implementation(project(":database"))
 	implementation(project(":nsd"))
+	implementation(project(":domain"))
 
 
 	implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))

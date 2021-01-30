@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import de.abacuselectronics.aroiorc.R
-import de.abacus.aroio.database.entities.Aroio
+import de.abacus.aroio.domain.models.Aroio
 
 class AroioListAdapter(private val onClick: (Aroio) -> Unit) :
 	RecyclerView.Adapter<AroioListAdapter.Holder>() {

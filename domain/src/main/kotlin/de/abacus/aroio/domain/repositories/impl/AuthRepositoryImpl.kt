@@ -1,5 +1,6 @@
-package de.abacuselectronics.aroiorc.repository
+package de.abacus.aroio.domain.repositories.impl
 
+import de.abacus.aroio.domain.repositories.AuthRepository
 import de.abacus.aroio.network.auth.AuthCredentials
 import de.abacus.aroio.network.auth.OAuthTokenProvider
 import de.abacus.aroio.network.models.ChangePasswordInput
