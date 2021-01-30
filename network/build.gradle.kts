@@ -1,7 +1,7 @@
 plugins {
 	id("com.android.library")
-	id("kotlinx-serialization")
 	kotlin("android")
+	kotlin("plugin.serialization") version "1.4.10"
 }
 
 android {
@@ -30,6 +30,12 @@ android {
 	}
 	kotlinOptions {
 		jvmTarget = "1.8"
+	}
+}
+
+kotlin {
+	sourceSets.all {
+		languageSettings.enableLanguageFeature("InlineClasses")
 	}
 }
 

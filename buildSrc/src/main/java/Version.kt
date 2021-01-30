@@ -2,7 +2,7 @@ object Version {
 
 	object Kotlin {
 		const val std = "1.4.21"
-		const val serialization = "1.0.0-RC"
+		const val serialization = "1.0.1"
 	}
 
 	object Test {

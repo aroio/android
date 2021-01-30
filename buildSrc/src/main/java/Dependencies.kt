@@ -2,7 +2,7 @@ object Dependencies {
 
 	object Kotlin {
 		const val std = "org.jetbrains.kotlin:kotlin-stdlib:${Version.Kotlin.std}"
-		const val serialization = "org.jetbrains.kotlinx:kotlinx-serialization-core:${Version.Kotlin.serialization}"
+		const val serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Version.Kotlin.serialization}"
 	}
 
 	object Test {
