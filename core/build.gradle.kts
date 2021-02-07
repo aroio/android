@@ -39,6 +39,6 @@ android {
 dependencies {
 	implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 	implementation(Dependencies.Kotlin.std)
-	testImplementation(Dependencies.Test.kotlin)
-	testImplementation(Dependencies.Test.junit5)
+	testImplementation(Dependencies.Kotlin.test)
+	testImplementation(Dependencies.JUnit.jupiter)
 }

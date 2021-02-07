@@ -44,7 +44,6 @@ android {
 
 dependencies {
 	implementation(project(":core"))
-	implementation(project(":nsd"))
 	implementation(project(":domain"))
 
 
@@ -57,11 +56,10 @@ dependencies {
 	implementation(dependencyNotation = "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
 	implementation(dependencyNotation = "androidx.fragment:fragment-ktx:1.2.5")
 	implementation(dependencyNotation = "androidx.cardview:cardview:1.0.0")
-	implementation(dependencyNotation = "com.google.android.material:material:1.2.1")
+	implementation(dependencyNotation = "com.google.android.material:material:1.3.0")
 
-	testImplementation(Dependencies.Test.junit5)
-	testImplementation(Dependencies.Test.kotlin)
+	testImplementation(Dependencies.JUnit.jupiter)
+	testImplementation(Dependencies.Kotlin.test)
 
 	androidTestImplementation(Dependencies.InstTest.android)
-	androidTestImplementation(Dependencies.InstTest.espresso)
 }

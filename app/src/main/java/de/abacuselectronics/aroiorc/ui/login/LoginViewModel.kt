@@ -4,13 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import de.abacus.aroio.domain.repositories.AuthRepository
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 
-class LoginViewModel(
-	private val authRepository: AuthRepository
-) : ViewModel() {
+class LoginViewModel() : ViewModel() {
 
 	sealed class State {
 		object Loading : State()
@@ -36,7 +33,6 @@ class LoginViewModel(
 		if (username.isBlank() or password.isBlank()) {
 			return State.Failure(FailReason.InvalidInput)
 		}
-		authRepository.authenticate(username, password)
 		return State.Success
 	}
 }

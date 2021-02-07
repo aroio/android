@@ -1,7 +1,5 @@
 package de.abacus.aroio.network.service
 
-import de.abacus.aroio.network.Client
-import de.abacus.aroio.network.auth.OAuthTokenProvider
 import de.abacus.aroio.network.auth.AuthCredentials
 import de.abacus.aroio.network.auth.Token
 import de.abacus.aroio.network.models.ChangePasswordInput
@@ -17,13 +15,4 @@ interface AuthenticationService {
 	@PATCH("aroio/password")
 	suspend fun changePassword(@Body passwordInput: ChangePasswordInput)
 
-	companion object {
-		fun get(
-			tokenProvider: OAuthTokenProvider,
-			ipAddress: String
-		): AuthenticationService {
-			val client = Client.getRetrofit(tokenProvider, ipAddress)
-			return client.create(AuthenticationService::class.java)
-		}
-	}
 }

@@ -50,7 +50,7 @@ dependencies {
 	implementation(dependencyNotation = "com.squareup.okhttp3:okhttp:4.9.0")
 	implementation(dependencyNotation = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0")
 
-	testImplementation(Dependencies.Test.junit5)
-	testImplementation(Dependencies.Test.kotlin)
+	testImplementation(Dependencies.JUnit.jupiter)
+	testImplementation(Dependencies.Kotlin.test)
 	androidTestImplementation(Dependencies.InstTest.android)
 }

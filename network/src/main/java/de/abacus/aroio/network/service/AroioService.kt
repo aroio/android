@@ -1,22 +1,11 @@
 package de.abacus.aroio.network.service
 
-import de.abacus.aroio.network.Client
-import de.abacus.aroio.network.auth.OAuthTokenProvider
 import de.abacus.aroio.network.models.Aroio
 import retrofit2.http.GET
 
-interface AroioService {
-	
+interface AroioService : Service {
+
 	@GET("aroio")
 	suspend fun getAroio(): Aroio
-	
-	companion object {
-		fun get(
-			oauthTokenProvider: OAuthTokenProvider,
-			ipAddress: String
-		): AroioService {
-			val client = Client.getRetrofit(oauthTokenProvider, ipAddress)
-			return client.create(AroioService::class.java)
-		}
-	}
+
 }

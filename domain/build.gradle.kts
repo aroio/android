@@ -38,8 +38,8 @@ dependencies {
 	implementation(dependencyNotation = project(path = ":core"))
 
 	implementation(Dependencies.Kotlin.std)
-	testImplementation(Dependencies.Test.junit5)
-	testImplementation(Dependencies.Test.kotlin)
+	testImplementation(Dependencies.JUnit.jupiter)
+	testImplementation(Dependencies.Kotlin.test)
 }
 
 android.sourceSets.all {
