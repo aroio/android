@@ -9,7 +9,7 @@ object Dependencies {
 	}
 
 	object JUnit {
-		const val jupiter = "org.junit.jupiter:junit-jupiter:${Version.Test.junit5}"
+		const val jupiter = "org.junit.jupiter:junit-jupiter:${Version.JUnit.jupiter}"
 	}
 
 	object Android {
