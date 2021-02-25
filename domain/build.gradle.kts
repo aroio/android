@@ -38,6 +38,7 @@ dependencies {
 	implementation(dependencyNotation = project(path = ":core"))
 
 	implementation(Dependencies.Kotlin.std)
+	implementation(Dependencies.Kotlin.coroutines)
 	testImplementation(Dependencies.JUnit.jupiter)
 	testImplementation(Dependencies.Kotlin.test)
 }

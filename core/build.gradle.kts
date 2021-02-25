@@ -39,6 +39,7 @@ android {
 dependencies {
 	implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 	implementation(Dependencies.Kotlin.std)
+	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2")
 	testImplementation(Dependencies.Kotlin.test)
 	testImplementation(Dependencies.JUnit.jupiter)
 }

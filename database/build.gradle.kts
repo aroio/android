@@ -36,7 +36,7 @@ dependencies {
 	implementation(project(path = ":core"))
 	
 	implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-	implementation(dependencyNotation = "org.jetbrains.kotlin:kotlin-stdlib:1.4.21")
+	implementation(dependencyNotation = "org.jetbrains.kotlin:kotlin-stdlib:1.4.30")
 	implementation(dependencyNotation =  "androidx.appcompat:appcompat:1.2.0")
 	
 	// Room
