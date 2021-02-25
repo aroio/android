@@ -3,7 +3,6 @@ package de.abacus.aroio.network
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import de.abacus.aroio.network.auth.OAuthTokenProvider
 import de.abacus.aroio.network.service.Service
-import kotlinx.serialization.ExperimentalSerializationApi
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -34,7 +33,6 @@ class Client(private val oauthTokenProvider: OAuthTokenProvider) :
 			return createRetrofit(tokenProvider, aroioIpAddress)
 		}
 
-		@OptIn(ExperimentalSerializationApi::class)
 		private fun createRetrofit(
 			oauthTokenProvider: OAuthTokenProvider,
 			baseUrl: String
