@@ -6,6 +6,7 @@ object Dependencies {
 			"org.jetbrains.kotlinx:kotlinx-serialization-json:${Version.Kotlin.serialization}"
 		const val test =
 			"org.jetbrains.kotlin:kotlin-test-junit:${Version.Kotlin.std}"
+		const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Version.Kotlin.coroutines}"
 	}
 
 	object JUnit {
