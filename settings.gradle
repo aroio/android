@@ -1,4 +1,3 @@
-include ':nsdFlow'
 include ':domain'
 include ':core'
 include ':network'
